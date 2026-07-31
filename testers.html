@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pathfinder — Tester Access</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2F0EC; --surface:#FFFFFF; --inset:#EDE9E3;
+    --accent:#2B7A78; --accent-hover:#236563; --accent-light:rgba(43,122,120,0.08);
+    --gold:#8B6914; --tx1:#1C2331; --tx2:#5A6577; --tx3:#8B95A5;
+    --border:#DDD9D2; --green:#2D6A4F; --red:#9B2C2C;
+    --shadow:0 1px 3px rgba(0,0,0,0.06);
+    --grid:rgba(28,35,49,0.06);
+  }
+  html[data-theme="dark"]{
+    --bg:#0F1720; --surface:#172030; --inset:#1C2840;
+    --accent:#4DB8B4; --accent-hover:#3DA8A4; --accent-light:rgba(77,184,180,0.10);
+    --gold:#DAA520; --tx1:#E4E2DD; --tx2:#9BA5B5; --tx3:#6B7585;
+    --border:#2A3444; --green:#52B788; --red:#D46A6A;
+    --shadow:0 1px 3px rgba(0,0,0,0.4);
+    --grid:rgba(228,226,221,0.06);
+  }
+  html,body{margin:0;padding:0;background:var(--bg);}
+  body{font-family:Geist,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;color:var(--tx1);}
+  *{box-sizing:border-box;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{color:var(--accent-hover);text-decoration:underline;}
+  h1,h2,h3,h4,p,ul,ol,li,figure{margin:0;padding:0;}
+  ul,ol{list-style:none;}
+  .mono{font-family:'Geist Mono',ui-monospace,monospace;}
+  input[type="text"],input[type="email"],textarea{font-family:Geist,system-ui,sans-serif;font-size:15px;color:var(--tx1);background:var(--surface);border:1px solid var(--border);padding:12px 14px;width:100%;border-radius:0;outline:none;}
+  input[type="text"]:focus,input[type="email"]:focus,textarea:focus{border-color:var(--accent);}
+  textarea{min-height:120px;resize:vertical;line-height:1.55;}
+  input::placeholder,textarea::placeholder{color:var(--tx3);}
+  input[type="checkbox"],input[type="radio"]{accent-color:var(--accent);width:16px;height:16px;}
+  .btn-primary{padding:15px 26px;background:var(--accent);color:#fff;font-size:15px;font-weight:500;border:none;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none;font-family:Geist,system-ui,sans-serif;}
+  .btn-primary:hover{background:var(--accent-hover);color:#fff;text-decoration:none;}
+  .btn-primary:disabled{opacity:0.6;cursor:not-allowed;}
+  .btn-outline{padding:15px 26px;background:transparent;border:1px solid var(--border);color:var(--tx1);font-size:15px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;cursor:pointer;font-family:Geist,system-ui,sans-serif;}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;}
+  .theme-toggle{height:34px;padding:0 12px;background:transparent;border:1px solid var(--border);color:var(--tx2);font-family:'Geist Mono',ui-monospace,monospace;font-size:10.5px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  .nav-login{height:34px;padding:0 16px;display:flex;align-items:center;background:var(--accent);color:#fff;font-size:12.5px;font-weight:500;text-decoration:none;}
+  .nav-login:hover{background:var(--accent-hover);color:#fff;text-decoration:none;}
+  .section-label{font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);}
+  .field-label{font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx2);}
+  .scale-option{background:var(--surface);box-shadow:0 0 0 1px var(--border);padding:14px 12px;display:grid;gap:6px;cursor:pointer;border-top:3px solid transparent;}
+  .scale-option:hover{background:var(--accent-light);}
+  .scale-option.selected{background:var(--accent-light);border-top-color:var(--accent);}
+  .check-option{background:var(--surface);box-shadow:0 0 0 1px var(--border);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;font-size:14.5px;color:var(--tx1);}
+  .check-option:hover{background:var(--accent-light);}
+  .prompt-card{background:var(--surface);box-shadow:0 0 0 1px var(--border);padding:22px 24px;}
+  @media(max-width:768px){
+    .steps-grid{grid-template-columns:1fr !important;}
+    .prompts-grid{grid-template-columns:1fr !important;}
+    .scale-grid{grid-template-columns:repeat(3,1fr) !important;}
+    .serious-grid{grid-template-columns:1fr !important;}
+    .assess-grid{grid-template-columns:1fr !important;}
+  }
+</style>
+</head>
+<body>
+<div style="background:var(--bg);color:var(--tx1);min-height:100vh;">
+
+  <header style="position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border);">
+    <div style="max-width:920px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <div style="display:flex;align-items:baseline;gap:12px;">
+        <span style="font-size:17px;font-weight:700;letter-spacing:-0.01em;">Pathfinder</span>
+        <span class="mono" style="font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);">Tester Access</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle colour scheme">Dark</button>
+        <a href="https://pathfinder-liard-delta.vercel.app/login" target="_blank" rel="noopener" class="nav-login">Log in</a>
+      </div>
+    </div>
+  </header>
+
+  <section style="padding:88px 32px 72px;border-bottom:1px solid var(--border);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:64px 64px;">
+    <div style="max-width:920px;margin:0 auto;">
+      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;">Tester Access</div>
+      <h1 style="font-size:clamp(38px,6vw,64px);line-height:1.02;font-weight:700;letter-spacing:-0.03em;">Pathfinder</h1>
+      <p style="margin-top:20px;font-size:clamp(18px,2.2vw,22px);line-height:1.4;letter-spacing:-0.01em;max-width:640px;text-wrap:pretty;">Thank you for helping us evaluate this platform.</p>
+      <p style="margin-top:16px;font-size:16px;line-height:1.6;color:var(--tx2);max-width:600px;text-wrap:pretty;">Around 45 minutes of your time is plenty. Everything you need is on this page, and the feedback form is at the bottom.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px;">
+        <a href="https://pathfinder-liard-delta.vercel.app/login" target="_blank" rel="noopener" class="btn-primary">Log in to Pathfinder</a>
+        <a href="#feedback" class="btn-outline">Go to feedback form</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:72px 32px;border-bottom:1px solid var(--border);">
+    <div style="max-width:920px;margin:0 auto;">
+      <div class="section-label">01 / What is Pathfinder</div>
+      <p style="margin-top:20px;font-size:17px;line-height:1.65;max-width:720px;text-wrap:pretty;">Pathfinder is a defence career intelligence platform. It uses visual scenario assessments that measure how you think rather than what you know: you study an operational scene and respond across four phases, Observe, Assess, Recommend and Anticipate.</p>
+      <p style="margin-top:16px;font-size:17px;line-height:1.65;color:var(--tx2);max-width:720px;text-wrap:pretty;">Alongside the scenarios there are psychometric reasoning modules covering numerical, verbal and logical reasoning. Each assessment produces a detailed report.</p>
+    </div>
+  </section>
+
+  <section style="padding:72px 32px;border-bottom:1px solid var(--border);background:var(--inset);">
+    <div style="max-width:920px;margin:0 auto;">
+      <div class="section-label">02 / What we'd like you to do</div>
+      <h2 style="margin-top:16px;font-size:28px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Six steps, about 45 minutes.</h2>
+      <ol style="margin-top:32px;display:grid;gap:1px;background:var(--border);border-top:3px solid var(--accent);list-style:none;padding:0;">
+        <li style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
+          <span class="mono" style="font-size:12px;font-weight:500;color:var(--accent);">01</span>
+          <p style="font-size:16px;font-weight:500;line-height:1.5;">Log in with the credentials we sent you</p>
+        </li>
+        <li style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
+          <span class="mono" style="font-size:12px;font-weight:500;color:var(--accent);">02</span>
+          <p style="font-size:16px;font-weight:500;line-height:1.5;">Go to Assessments</p>
+        </li>
+        <li style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
+          <span class="mono" style="font-size:12px;font-weight:500;color:var(--accent);">03</span>
+          <div>
+            <p style="font-size:16px;font-weight:500;line-height:1.5;">Try at least one scenario assessment</p>
+            <p style="margin-top:6px;font-size:14.5px;line-height:1.55;color:var(--tx2);text-wrap:pretty;">15 to 20 minutes each. Start with L1 or L2 to get a feel for it.</p>
+          </div>
+        </li>
+        <li style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
+          <span class="mono" style="font-size:12px;font-weight:500;color:var(--tx3);">04</span>
+          <div>
+            <p style="font-size:16px;font-weight:500;line-height:1.5;">Optionally, try a psychometric module</p>
+            <p style="margin-top:6px;font-size:14.5px;line-height:1.55;color:var(--tx2);text-wrap:pretty;">Numerical, verbal or logical reasoning. 20 minutes each.</p>
+          </div>
+        </li>
+        <li style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
+          <span class="mono" style="font-size:12px;font-weight:500;color:var(--accent);">05</span>
+          <p style="font-size:16px;font-weight:500;line-height:1.5;">Review your report after each assessment</p>
+        </li>
+        <li style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
+          <span class="mono" style="font-size:12px;font-weight:500;color:var(--accent);">06</span>
+          <p style="font-size:16px;font-weight:500;line-height:1.5;">Fill in the feedback form below</p>
+        </li>
+      </ol>
+      <p style="margin-top:20px;padding:16px 20px;background:var(--accent-light);border-left:3px solid var(--accent);font-size:15px;line-height:1.55;text-wrap:pretty;">Don't worry about scoring highly. We're testing the experience, not you.</p>
+    </div>
+  </section>
+
+  <section style="padding:72px 32px;border-bottom:1px solid var(--border);">
+    <div style="max-width:920px;margin:0 auto;">
+      <div class="section-label">03 / What to pay attention to</div>
+      <h2 style="margin-top:16px;font-size:28px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Worth noticing as you go.</h2>
+      <div class="prompts-grid" style="margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;border-top:3px solid var(--gold);">
+        <div class="prompt-card"><p style="font-size:15.5px;line-height:1.55;text-wrap:pretty;">Did the scenario feel realistic and engaging?</p></div>
+        <div class="prompt-card"><p style="font-size:15.5px;line-height:1.55;text-wrap:pretty;">Was the image interesting to analyse? Did you find yourself looking deeper?</p></div>
+        <div class="prompt-card"><p style="font-size:15.5px;line-height:1.55;text-wrap:pretty;">Were the phase prompts clear?</p></div>
+        <div class="prompt-card"><p style="font-size:15.5px;line-height:1.55;text-wrap:pretty;">How did the report feel? Fair? Surprising?</p></div>
+        <div class="prompt-card"><p style="font-size:15.5px;line-height:1.55;text-wrap:pretty;">Any rough edges, confusing moments, or things that felt off?</p></div>
+        <div class="prompt-card"><p style="font-size:15.5px;line-height:1.55;text-wrap:pretty;">Overall, would you take this seriously as part of a hiring process?</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="feedback" style="padding:72px 32px;border-bottom:1px solid var(--border);background:var(--inset);scroll-margin-top:64px;">
+    <div style="max-width:920px;margin:0 auto;">
+      <div class="section-label">04 / Feedback</div>
+      <h2 style="margin-top:16px;font-size:28px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Tell us how it went.</h2>
+      <p style="margin-top:14px;font-size:16px;line-height:1.6;color:var(--tx2);max-width:640px;text-wrap:pretty;">Short answers are fine. Blunt answers are better.</p>
+
+      <div id="successMsg" style="display:none;margin-top:32px;background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--green);padding:40px 32px;">
+        <div class="mono" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);">Received</div>
+        <h3 style="margin-top:14px;font-size:24px;font-weight:600;letter-spacing:-0.02em;">Thank you, your feedback has been submitted.</h3>
+        <p style="margin-top:12px;font-size:15.5px;line-height:1.6;color:var(--tx2);max-width:560px;text-wrap:pretty;">We read every response. If you try another assessment later and want to add to this, you're welcome to submit the form again.</p>
+        <button id="resetBtn" class="btn-outline" style="margin-top:24px;font-size:14px;padding:12px 20px;">Submit more feedback</button>
+      </div>
+
+      <form id="feedbackForm" style="margin-top:32px;background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:32px;display:grid;gap:32px;">
+
+        <div style="display:grid;gap:10px;">
+          <label for="pf-email" class="field-label">Your test email <span style="color:var(--red);">*</span></label>
+          <input id="pf-email" name="email" type="email" placeholder="name@pathfinder-test.com" required>
+          <p id="emailError" style="display:none;font-size:13px;line-height:1.5;color:var(--red);">Please use the @pathfinder-test.com address we issued you.</p>
+          <p style="font-size:13px;line-height:1.5;color:var(--tx3);">The test address we issued, so we can match feedback to a session.</p>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <span class="field-label">Which assessments did you complete?</span>
+          <div id="assessmentChecks" class="assess-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;border:1px solid var(--border);"></div>
+        </div>
+
+        <div id="scaleOverall" style="display:grid;gap:12px;">
+          <span class="field-label">Overall experience</span>
+          <div class="scale-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;border:1px solid var(--border);"></div>
+        </div>
+
+        <div id="scaleRealism" style="display:none;">
+          <div style="display:grid;gap:12px;">
+            <span class="field-label">Scenario realism</span>
+            <div class="scale-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;border:1px solid var(--border);"></div>
+          </div>
+        </div>
+
+        <div id="scaleReport" style="display:grid;gap:12px;">
+          <span class="field-label">Report quality</span>
+          <div class="scale-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;border:1px solid var(--border);"></div>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <span class="field-label">Would you take this seriously in a real hiring process?</span>
+          <div id="seriousOptions" class="serious-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;border:1px solid var(--border);"></div>
+        </div>
+
+        <div style="display:grid;gap:10px;">
+          <label for="pf-good" class="field-label">What worked well?</label>
+          <textarea id="pf-good" name="worked_well" placeholder="Anything that landed, felt convincing, or held your attention."></textarea>
+        </div>
+
+        <div style="display:grid;gap:10px;">
+          <label for="pf-bad" class="field-label">What didn't work, or felt confusing?</label>
+          <textarea id="pf-bad" name="did_not_work" placeholder="Rough edges, unclear instructions, anything that broke the flow."></textarea>
+        </div>
+
+        <div style="display:grid;gap:10px;">
+          <label for="pf-other" class="field-label">Any other comments?</label>
+          <textarea id="pf-other" name="other" placeholder="Optional."></textarea>
+        </div>
+
+        <p id="submitError" style="display:none;padding:14px 16px;background:var(--surface);border-left:3px solid var(--red);font-size:14px;line-height:1.5;">Something went wrong sending that. Please try again, or email your feedback to adam@generativeaisolutions.com.</p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;padding-top:8px;border-top:1px solid var(--border);">
+          <button type="submit" id="submitBtn" class="btn-primary">Submit feedback</button>
+          <span style="font-size:13.5px;line-height:1.5;color:var(--tx3);">Takes a couple of minutes. Nothing is shared outside the team.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer style="padding:40px 32px 56px;">
+    <div class="mono" style="max-width:920px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">
+      <span>Pathfinder · Built by Generative AI Solutions</span>
+      <a href="mailto:adam@generativeaisolutions.com" style="color:var(--tx3);">adam@generativeaisolutions.com</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function() {
+  var theme = 'light';
+  try { theme = localStorage.getItem('pf-theme') || 'light'; } catch(e) {}
+  document.documentElement.setAttribute('data-theme', theme);
+  var btn = document.getElementById('themeToggle');
+  function updateLabel() { btn.textContent = theme === 'dark' ? 'Light' : 'Dark'; }
+  updateLabel();
+  btn.addEventListener('click', function() {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('pf-theme', theme); } catch(e) {}
+    updateLabel();
+  });
+
+  var ASSESSMENTS = ['Scenario L1','Scenario L2','Scenario L3','Scenario L4','Numerical Reasoning','Verbal Reasoning','Logical Reasoning'];
+  var SCALE_LABELS = ['Poor','Below average','Average','Good','Excellent'];
+  var completed = [];
+  var scores = { overall: null, realism: null, report: null };
+  var serious = null;
+
+  function buildCheckboxes() {
+    var container = document.getElementById('assessmentChecks');
+    container.innerHTML = '';
+    ASSESSMENTS.forEach(function(label) {
+      var el = document.createElement('label');
+      el.className = 'check-option';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.addEventListener('change', function() {
+        if (cb.checked) { completed.push(label); }
+        else { completed = completed.filter(function(c) { return c !== label; }); }
+        var anyScenario = completed.some(function(c) { return c.indexOf('Scenario') === 0; });
+        document.getElementById('scaleRealism').style.display = anyScenario ? 'block' : 'none';
+      });
+      var span = document.createElement('span');
+      span.textContent = label;
+      el.appendChild(cb);
+      el.appendChild(span);
+      container.appendChild(el);
+    });
+  }
+
+  function buildScale(containerId, key) {
+    var wrapper = document.getElementById(containerId);
+    var grid = wrapper.querySelector('.scale-grid');
+    grid.innerHTML = '';
+    SCALE_LABELS.forEach(function(label, i) {
+      var v = i + 1;
+      var el = document.createElement('label');
+      el.className = 'scale-option';
+      el.setAttribute('data-value', v);
+      var radioWrap = document.createElement('span');
+      radioWrap.style.cssText = 'display:flex;align-items:center;gap:10px;';
+      var radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = key;
+      radio.addEventListener('change', function() {
+        scores[key] = v;
+        grid.querySelectorAll('.scale-option').forEach(function(opt) {
+          opt.classList.toggle('selected', opt.getAttribute('data-value') == scores[key]);
+        });
+      });
+      var num = document.createElement('span');
+      num.className = 'mono';
+      num.style.cssText = 'font-size:12px;font-weight:500;color:var(--tx2);';
+      num.textContent = String(v);
+      radioWrap.appendChild(radio);
+      radioWrap.appendChild(num);
+      var text = document.createElement('span');
+      text.style.cssText = 'font-size:13.5px;line-height:1.4;';
+      text.textContent = label;
+      el.appendChild(radioWrap);
+      el.appendChild(text);
+      grid.appendChild(el);
+    });
+  }
+
+  function buildSerious() {
+    var container = document.getElementById('seriousOptions');
+    container.innerHTML = '';
+    ['Yes','No','Maybe'].forEach(function(label) {
+      var el = document.createElement('label');
+      el.className = 'check-option';
+      el.setAttribute('data-value', label);
+      el.style.borderTop = '3px solid transparent';
+      var radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'serious';
+      radio.addEventListener('change', function() {
+        serious = label;
+        container.querySelectorAll('.check-option').forEach(function(opt) {
+          var sel = opt.getAttribute('data-value') === serious;
+          opt.style.background = sel ? 'var(--accent-light)' : 'var(--surface)';
+          opt.style.borderTopColor = sel ? 'var(--accent)' : 'transparent';
+        });
+      });
+      var span = document.createElement('span');
+      span.textContent = label;
+      el.appendChild(radio);
+      el.appendChild(span);
+      container.appendChild(el);
+    });
+  }
+
+  buildCheckboxes();
+  buildScale('scaleOverall', 'overall');
+  buildScale('scaleRealism', 'realism');
+  buildScale('scaleReport', 'report');
+  buildSerious();
+
+  var SUBMIT_ENDPOINT = '';
+
+  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = document.getElementById('pf-email').value.trim();
+    if (!/@pathfinder-test\.com$/i.test(email)) {
+      document.getElementById('emailError').style.display = 'block';
+      return;
+    }
+    document.getElementById('emailError').style.display = 'none';
+    document.getElementById('submitError').style.display = 'none';
+    var submitBtn = document.getElementById('submitBtn');
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    var payload = {
+      email: email,
+      assessments_completed: completed,
+      overall_experience: scores.overall,
+      scenario_realism: scores.realism,
+      report_quality: scores.report,
+      would_take_seriously: serious,
+      worked_well: document.getElementById('pf-good').value,
+      did_not_work: document.getElementById('pf-bad').value,
+      other_comments: document.getElementById('pf-other').value,
+      submitted_at: new Date().toISOString()
+    };
+
+    if (!SUBMIT_ENDPOINT) {
+      try {
+        var q = JSON.parse(localStorage.getItem('pf-feedback-queue') || '[]');
+        q.push(payload);
+        localStorage.setItem('pf-feedback-queue', JSON.stringify(q));
+      } catch(err) {}
+      setTimeout(function() {
+        submitBtn.textContent = 'Submit feedback';
+        submitBtn.disabled = false;
+        document.getElementById('feedbackForm').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      }, 400);
+      return;
+    }
+
+    fetch(SUBMIT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(r) {
+      if (!r.ok) throw new Error('bad status');
+      submitBtn.textContent = 'Submit feedback';
+      submitBtn.disabled = false;
+      document.getElementById('feedbackForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    }).catch(function() {
+      submitBtn.textContent = 'Submit feedback';
+      submitBtn.disabled = false;
+      document.getElementById('submitError').style.display = 'block';
+    });
+  });
+
+  document.getElementById('pf-email').addEventListener('input', function() {
+    document.getElementById('emailError').style.display = 'none';
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function() {
+    document.getElementById('successMsg').style.display = 'none';
+    document.getElementById('feedbackForm').style.display = 'grid';
+    completed = [];
+    scores = { overall: null, realism: null, report: null };
+    serious = null;
+    document.getElementById('feedbackForm').reset();
+    buildCheckboxes();
+    buildScale('scaleOverall', 'overall');
+    buildScale('scaleRealism', 'realism');
+    buildScale('scaleReport', 'report');
+    buildSerious();
+    document.getElementById('scaleRealism').style.display = 'none';
+  });
+})();
+</script>
+</body>
+</html>
