@@ -313,7 +313,65 @@
 
   <section style="padding:88px 32px;border-bottom:1px solid var(--border);background:var(--inset);">
     <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">06 / Who This Serves</div>
+      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">06 / Platform Architecture</div>
+      <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Three views, one evidence base.</h2>
+      <p style="margin-top:20px;font-size:16px;line-height:1.65;color:var(--tx2);max-width:720px;text-wrap:pretty;">The platform is built around three distinct perspectives that share a single competency evidence base. Each view is purpose-built for its user, and the same architecture serves every buyer type without customisation.</p>
+      <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:24px;">
+          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">View 1</div>
+          <h3 style="font-size:18px;font-weight:600;">Recruiter</h3>
+          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">The hiring team. Manages assessment campaigns, reviews candidate evidence, compares competency fit scores against role benchmarks, and generates shortlists backed by data.</p>
+        </div>
+        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--gold);padding:24px;">
+          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">View 2</div>
+          <h3 style="font-size:18px;font-weight:600;">Candidate</h3>
+          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">The person being assessed. Takes scenario and psychometric assessments, receives detailed competency reports, and sees how their profile maps against defence-industry career pathways.</p>
+        </div>
+        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--green);padding:24px;">
+          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:12px;">View 3</div>
+          <h3 style="font-size:18px;font-weight:600;">Client</h3>
+          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">The hiring authority. Sees aggregated candidate intelligence, manages roles and requirements, and makes informed decisions with competency evidence rather than CVs and interviews.</p>
+        </div>
+      </div>
+      <div style="margin-top:20px;background:var(--surface);box-shadow:var(--shadow);overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="border-bottom:2px solid var(--border);">
+              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);white-space:nowrap;">Platform view</th>
+              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);white-space:nowrap;">Defence prime</th>
+              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap;">Defence VC</th>
+              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);white-space:nowrap;">Government / MoD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:14px 20px;font-weight:600;">Recruiter</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Internal talent acquisition</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Portfolio company talent team</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Resettlement programme coordinator</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:14px 20px;font-weight:600;">Candidate</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Ex-military applicant</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Ex-military applicant</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Service leaver</td>
+            </tr>
+            <tr>
+              <td style="padding:14px 20px;font-weight:600;">Client</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Hiring manager / programme lead</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Portfolio company</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Department / force command</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px;font-size:13.5px;line-height:1.6;color:var(--tx3);max-width:720px;text-wrap:pretty;">The same platform, unmodified, serves each of these buyer types. The architecture is multi-tenant by design — a single deployment supports multiple organisations with role-based access and isolated data.</p>
+    </div>
+  </section>
+
+  <section style="padding:88px 32px;border-bottom:1px solid var(--border);">
+    <div style="max-width:1180px;margin:0 auto;">
+      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">07 / Who This Serves</div>
       <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Three constituencies, one evidence base.</h2>
       <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
         <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:24px;">
@@ -335,9 +393,9 @@
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);">
+  <section style="padding:88px 32px;border-bottom:1px solid var(--border);background:var(--inset);">
     <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">07 / Platform Capability</div>
+      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">08 / Platform Capability</div>
       <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Built, calibrated, in operation.</h2>
       <div class="grid-5col" style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);border-top:3px solid var(--accent);">
         <div style="background:var(--surface);padding:28px 24px;">
@@ -373,9 +431,9 @@
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);background:var(--inset);">
+  <section style="padding:88px 32px;border-bottom:1px solid var(--border);">
     <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">08 / Who Built This</div>
+      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">09 / Who Built This</div>
       <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;max-width:760px;text-wrap:pretty;">Generative AI Solutions builds assessment and decision software for the public safety and defence sectors.</h2>
       <p style="margin-top:20px;font-size:16px;line-height:1.65;color:var(--tx2);max-width:720px;text-wrap:pretty;">Pathfinder is not a first attempt. We build systems that operate inside organisations where an unexplainable output is not acceptable, and we design for scrutiny from the outset.</p>
       <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
