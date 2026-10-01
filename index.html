@@ -52,6 +52,21 @@ section + section { border-top: 1px solid var(--border); }
 figure { margin: 0; display: grid; gap: 8px; }
 figure img { width: 100%; height: auto; border-radius: 14px; display: block; border: 1px solid var(--border); }
 figcaption { font-size: 14px; color: var(--text-3); }
+.board { position: relative; line-height: 0; }
+.board img { border-radius: 14px; }
+.strings { position: absolute; inset: 0; width: 100%; height: 100%; }
+.strings line { vector-effect: non-scaling-stroke; stroke-linecap: round; }
+.strings .under line { stroke: rgba(0, 0, 0, 0.55); stroke-width: 7; }
+.strings .over line { stroke: #F0B429; stroke-width: 3; }
+.bpin { position: absolute; transform: translate(-50%, -50%); min-width: 26px; height: 26px; padding: 0 6px; border-radius: 13px; background: #F0B429; color: #111416;
+  border: 2px solid #111416; font: 700 13px/22px ui-monospace, Menlo, monospace; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+.blinks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.blinks li { display: grid; grid-template-columns: auto auto 1fr; gap: 4px 12px; align-items: baseline; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; font-size: 14px; }
+.blinks b { font-family: ui-monospace, Menlo, monospace; color: var(--ochre); }
+.blinks .for { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.blinks q { color: var(--text-2); }
+@media (max-width: 560px) { .blinks li { grid-template-columns: auto 1fr; } .blinks q { grid-column: 1 / -1; } }
+
 .head { display: grid; gap: 12px; margin-bottom: 32px; max-width: 760px; }
 .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 18px; }
 .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px; }
@@ -95,8 +110,27 @@ footer .wrap { display: flex; gap: 16px; flex-wrap: wrap; justify-content: space
       </div>
     </div>
     <figure>
-      <img src="uploads/practice-room.jpg" alt="A community hall at five past nine: a booking sheet by the door lists two sessions in the main hall, a man with keys stands by a trolley of chairs, and a woman with a clipboard stands by a stack of boxes." width="1600" height="900">
-      <figcaption>The practice room. Every candidate starts here: one picture, a short brief, and decisions to make.</figcaption>
+      <!-- A candidate's board, as the platform draws it, on a scene that is not one of the four rooms (a retired
+           scenario), so nothing here gives an answer away. -->
+      <div class="board">
+        <img src="uploads/board-scene.jpg" alt="A boardroom at 05:15. Screens show an unsolicited takeover approach, a share price, a cash position with 18 months of runway, and a response deadline at the 07:00 market open. Six things are pinned with numbered gold pins, and three gold strings join them in pairs." width="1600" height="893">
+        <svg class="strings" viewBox="0 0 1000 558" preserveAspectRatio="none" aria-hidden="true">
+          <g class="under"><line x1="703" y1="100" x2="925" y2="287"/><line x1="287" y1="180" x2="940" y2="196"/><line x1="745" y1="225" x2="315" y2="434"/></g>
+          <g class="over"><line x1="703" y1="100" x2="925" y2="287"/><line x1="287" y1="180" x2="940" y2="196"/><line x1="745" y1="225" x2="315" y2="434"/></g>
+        </svg>
+        <span class="bpin" style="left:70.3%;top:18%">1</span>
+        <span class="bpin" style="left:92.5%;top:51.5%">2</span>
+        <span class="bpin" style="left:28.7%;top:32.3%">3</span>
+        <span class="bpin" style="left:94%;top:35.1%">4</span>
+        <span class="bpin" style="left:74.5%;top:40.3%">5</span>
+        <span class="bpin" style="left:31.5%;top:77.8%">6</span>
+      </div>
+      <ul class="blinks">
+        <li><b>1 + 2</b><span class="for">For: when to respond</span><q>It's 05:15 and the response is due at the 07:00 open.</q></li>
+        <li><b>3 + 4</b><span class="for">For: the offer</span><q>The approach is priced well above where the shares trade.</q></li>
+        <li><b>5 + 6</b><span class="for">For: standing alone</span><q>Eighteen months of runway is exactly where the cliff is.</q></li>
+      </ul>
+      <figcaption>A candidate's board: what they pinned, the pairs they joined, and the decision each link helps with. Drawn here on a scene that isn't one of the four rooms, so it gives nothing away.</figcaption>
     </figure>
   </section>
 </div>
