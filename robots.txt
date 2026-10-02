@@ -1,2 +1,5 @@
+# Not for search engines. Every page and image is sent with "X-Robots-Tag: noindex" (vercel.json) and carries a
+# robots noindex tag. Crawling is allowed on purpose: a crawler blocked here never sees the noindex, and can still
+# list a bare URL it finds linked elsewhere.
 User-agent: *
-Disallow: /
+Allow: /
