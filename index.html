@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pathfinder - Defence Career Intelligence</title>
-<meta name="description" content="Objective competency assessment for military-to-industry transition. Evidence, not inference.">
+<title>Turnstone for defence</title>
+<meta name="description" content="Turnstone shows how a service leaver gets things done in a civilian workplace, where rank no longer gives the order. Four workplace situations and three reasoning tests, scored by fixed rules. No AI marks anyone.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* Turnstone for defence (rewritten 2 October 2026, decision 50). The precision look of the August site, with
+     its content brought up to what is true today. */
   :root{
     --bg:#F2F0EC; --surface:#FFFFFF; --inset:#EDE9E3;
     --accent:#2B7A78; --accent-hover:#236563; --accent-light:rgba(43,122,120,0.08);
-    --gold:#8B6914; --tx1:#1C2331; --tx2:#5A6577; --tx3:#8B95A5;
+    --gold:#8B6914; --tx1:#1C2331; --tx2:#5A6577; --tx3:#7A8494;
     --border:#DDD9D2; --green:#2D6A4F; --amber:#92700C; --red:#9B2C2C;
     --shadow:0 1px 3px rgba(0,0,0,0.06);
     --grid:rgba(28,35,49,0.06);
@@ -21,7 +23,7 @@
   html[data-theme="dark"]{
     --bg:#0F1720; --surface:#172030; --inset:#1C2840;
     --accent:#4DB8B4; --accent-hover:#3DA8A4; --accent-light:rgba(77,184,180,0.10);
-    --gold:#DAA520; --tx1:#E4E2DD; --tx2:#9BA5B5; --tx3:#6B7585;
+    --gold:#DAA520; --tx1:#E4E2DD; --tx2:#9BA5B5; --tx3:#7B8595;
     --border:#2A3444; --green:#52B788; --amber:#D6A72C; --red:#D46A6A;
     --shadow:0 1px 3px rgba(0,0,0,0.4);
     --grid:rgba(228,226,221,0.06);
@@ -31,33 +33,84 @@
   *{box-sizing:border-box;}
   a{color:var(--accent);text-decoration:none;}
   a:hover{color:var(--accent-hover);text-decoration:underline;}
-  h1,h2,h3,h4,p,ul,li{margin:0;padding:0;}
-  ul{list-style:none;}
-  @keyframes riseIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  h1,h2,h3,h4,p,ul,ol,li{margin:0;padding:0;}
+  ul,ol{list-style:none;}
+  h1,h2,h3{text-wrap:balance;}
+  p{text-wrap:pretty;}
+
+  .mono{font-family:'Geist Mono',ui-monospace,monospace;}
+  .wrap{max-width:1180px;margin:0 auto;}
+  section{padding:88px 32px;border-bottom:1px solid var(--border);}
+  section.alt{background:var(--inset);}
+  .label{font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);}
+  .label.on{color:var(--accent);}
+  .h2{margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;max-width:760px;}
+  .lede{margin-top:20px;font-size:16px;line-height:1.65;color:var(--tx2);max-width:720px;}
+  .card{background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:24px;}
+  .card h3{font-size:17px;font-weight:600;margin-bottom:10px;}
+  .card p{font-size:14.5px;line-height:1.6;color:var(--tx2);}
+  .card .tag{font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+  .card.gold{border-top-color:var(--gold);} .card.gold .tag{color:var(--gold);}
+  .card.green{border-top-color:var(--green);} .card.green .tag{color:var(--green);}
+  .cards{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+  .ruled{display:grid;gap:1px;background:var(--border);}
+  .ruled > div{background:var(--surface);padding:24px;}
+  .ruled h3{font-size:16px;font-weight:600;margin-bottom:8px;}
+  .ruled p{font-size:15px;line-height:1.6;color:var(--tx2);}
 
   .btn-primary{padding:14px 24px;background:var(--accent);color:#fff;font-size:14px;font-weight:500;border:none;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none;}
   .btn-primary:hover{background:var(--accent-hover);color:#fff;text-decoration:none;}
   .btn-outline{padding:14px 24px;background:transparent;border:1px solid var(--border);color:var(--tx1);font-size:14px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;cursor:pointer;}
   .btn-outline:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;}
-  .btn-sm-primary{padding:13px 22px;background:var(--accent);color:#fff;font-size:14px;font-weight:500;border:none;display:inline-flex;align-items:center;text-decoration:none;cursor:pointer;}
-  .btn-sm-primary:hover{background:var(--accent-hover);color:#fff;text-decoration:none;}
   .btn-sm-outline{padding:10px 18px;background:transparent;border:1px solid var(--accent);color:var(--accent);font-size:13.5px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;cursor:pointer;}
   .btn-sm-outline:hover{background:var(--accent);color:#fff;text-decoration:none;}
-  .btn-sm-ghost{padding:13px 22px;background:transparent;border:1px solid var(--border);color:var(--tx1);font-size:14px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;cursor:pointer;}
-  .btn-sm-ghost:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;}
   .theme-toggle{height:34px;padding:0 12px;background:transparent;border:1px solid var(--border);color:var(--tx2);font-family:'Geist Mono',ui-monospace,monospace;font-size:10.5px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;}
   .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
-  .nav-enquiry{height:34px;padding:0 16px;display:flex;align-items:center;background:var(--accent);color:#fff;font-size:12.5px;font-weight:500;letter-spacing:0.01em;text-decoration:none;}
-  .nav-enquiry:hover{background:var(--accent-hover);color:#fff;text-decoration:none;}
+  .nav-btn{height:34px;padding:0 16px;display:flex;align-items:center;font-size:12.5px;font-weight:500;letter-spacing:0.01em;text-decoration:none;white-space:nowrap;}
+  .nav-btn.solid{background:var(--accent);color:#fff;}
+  .nav-btn.solid:hover{background:var(--accent-hover);color:#fff;text-decoration:none;}
+  .nav-btn.line{border:1px solid var(--border);color:var(--tx1);}
+  .nav-btn.line:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;}
 
-  .mono{font-family:'Geist Mono',ui-monospace,monospace;}
+  /* The illustrative board: a retired scene, not one of the four rooms, so it gives nothing away. */
+  .board{position:relative;line-height:0;}
+  .board img{display:block;width:100%;height:auto;}
+  .strings{position:absolute;inset:0;width:100%;height:100%;}
+  .strings line{vector-effect:non-scaling-stroke;stroke-linecap:round;}
+  .strings .under line{stroke:rgba(0,0,0,0.55);stroke-width:7;}
+  .strings .over line{stroke:#F0B429;stroke-width:3;}
+  .bpin{position:absolute;transform:translate(-50%,-50%);min-width:26px;height:26px;padding:0 6px;border-radius:13px;background:#F0B429;color:#111416;border:2px solid #111416;font:700 13px/22px 'Geist Mono',ui-monospace,monospace;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.6);}
+  .blinks{display:grid;gap:1px;background:var(--border);}
+  .blinks li{background:var(--surface);display:grid;grid-template-columns:auto auto 1fr;gap:4px 16px;align-items:baseline;padding:12px 20px;font-size:14px;}
+  .blinks b{font-family:'Geist Mono',ui-monospace,monospace;font-weight:500;color:var(--gold);}
+  .blinks .for{font-family:'Geist Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);}
+  .blinks q{color:var(--tx2);}
+
+  .phase{background:var(--surface);padding:18px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;}
+  .phase > span{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;font-weight:500;color:var(--accent);}
+  .phase h4{font-size:15px;font-weight:600;}
+  .phase p{margin-top:6px;font-size:14px;line-height:1.55;color:var(--tx2);}
+
+  .stat{background:var(--surface);padding:28px 24px;}
+  .stat .n{font-family:'Geist Mono',ui-monospace,monospace;font-size:40px;font-weight:500;letter-spacing:-0.03em;color:var(--tx1);font-variant-numeric:tabular-nums;}
+  .stat .d{margin-top:10px;font-size:13.5px;line-height:1.45;color:var(--tx2);}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px 16px;background:var(--surface);font-size:13.5px;color:var(--tx2);}
+  .vs span + span{color:var(--tx1);font-weight:500;}
+  .vs.head{background:var(--inset);font-family:'Geist Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);}
+  .vs.head span + span{color:var(--tx3);font-weight:400;}
+
+  .email{user-select:all;}
 
   @media(max-width:768px){
+    section{padding:64px 20px;}
     .grid-2col{grid-template-columns:1fr !important;}
-    .grid-5col{grid-template-columns:repeat(2,1fr) !important;}
-    .grid-3col{grid-template-columns:1fr !important;}
-    .scenario-inner{grid-template-columns:1fr !important;}
     .footer-bar{flex-direction:column;align-items:flex-start !important;gap:8px !important;}
+    .hide-sm{display:none !important;}
+  }
+  @media(max-width:560px){
+    .blinks li{grid-template-columns:auto 1fr;}
+    .blinks q{grid-column:1 / -1;}
   }
 </style>
 </head>
@@ -65,273 +118,232 @@
 <div style="background:var(--bg);color:var(--tx1);min-height:100vh;">
 
   <header style="position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border);">
-    <div style="max-width:1180px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
-      <div style="display:flex;align-items:baseline;gap:12px;">
-        <span style="font-size:17px;font-weight:700;letter-spacing:-0.01em;">Pathfinder</span>
-        <span class="mono" style="font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--tx3);">Defence Career Intelligence</span>
+    <div style="max-width:1180px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+      <div style="display:flex;align-items:baseline;gap:12px;min-width:0;">
+        <span style="font-size:17px;font-weight:700;letter-spacing:-0.01em;">Turnstone</span>
+        <span class="mono hide-sm" style="font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--tx3);">For defence</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
         <button id="themeToggle" class="theme-toggle" aria-label="Toggle colour scheme">Dark</button>
-        <a href="mailto:adam@generativeaisolutions.com?subject=Pathfinder%3A%20Investment%20%26%20Acquisition%20Enquiry" class="nav-enquiry">Enquiries</a>
+        <a href="https://pathfinder-liard-delta.vercel.app/login" class="nav-btn line hide-sm">Sign in</a>
+        <a href="mailto:adam@generativeaisolutions.com?subject=Turnstone%20for%20defence%3A%20demo" class="nav-btn solid">Ask for a demo</a>
       </div>
     </div>
   </header>
 
-  <section style="padding:120px 32px 96px;border-bottom:1px solid var(--border);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:64px 64px;background-position:center top;">
-    <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:32px;">Defence Career Intelligence</div>
-      <h1 style="font-size:clamp(48px,8vw,104px);line-height:0.94;font-weight:700;letter-spacing:-0.035em;margin-bottom:32px;">Pathfinder</h1>
-      <p style="font-size:clamp(20px,2.4vw,28px);line-height:1.35;font-weight:400;letter-spacing:-0.015em;color:var(--tx1);max-width:820px;text-wrap:pretty;">Objective competency assessment for military-to-industry transition. Evidence, not inference.</p>
-      <p style="margin-top:24px;font-size:16px;line-height:1.6;color:var(--tx2);max-width:640px;text-wrap:pretty;">A server-side assessment platform that measures how senior military professionals think, decide and lead, then maps that evidence against the requirements of defence-industry roles.</p>
-      <p style="margin-top:20px;padding-left:16px;border-left:3px solid var(--accent);font-size:15px;line-height:1.6;color:var(--tx1);max-width:600px;font-weight:500;text-wrap:pretty;">AI reads. The framework scores. An LLM identifies which evidence a candidate raised; a deterministic weighted framework decides what it means.</p>
-      <p style="margin-top:20px;font-size:14.5px;line-height:1.6;color:var(--tx3);max-width:600px;text-wrap:pretty;">When assessment is structured and scoring is deterministic, the same evidence produces the same result, regardless of who the candidate is.</p>
+  <section style="padding-top:120px;padding-bottom:96px;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:64px 64px;background-position:center top;">
+    <div class="wrap">
+      <div class="label on" style="margin-bottom:32px;">Military to civilian transition</div>
+      <h1 style="font-size:clamp(48px,8vw,104px);line-height:0.94;font-weight:700;letter-spacing:-0.035em;margin-bottom:32px;">Turnstone</h1>
+      <p style="font-size:clamp(20px,2.4vw,28px);line-height:1.35;font-weight:400;letter-spacing:-0.015em;color:var(--tx1);max-width:820px;">How a service leaver gets things done in a civilian workplace, where rank no longer gives the order. Evidence, not inference.</p>
+      <p style="margin-top:24px;font-size:16px;line-height:1.6;color:var(--tx2);max-width:640px;">Every candidate works through the same four short workplace situations and three reasoning tests. The employer gets a profile they can read in minutes: what the candidate noticed, what they put together, the calls they made and who they went to.</p>
+      <p style="margin-top:20px;padding-left:16px;border-left:3px solid var(--accent);font-size:15px;line-height:1.6;color:var(--tx1);max-width:600px;font-weight:500;">No AI marks anyone. Candidates pin, join and decide; fixed rules, written in advance, score what they did.</p>
+      <p style="margin-top:20px;font-size:14.5px;line-height:1.6;color:var(--tx3);max-width:600px;">The same choices produce the same result, whoever the candidate is.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:48px;">
-        <a href="mailto:adam@generativeaisolutions.com?subject=Pathfinder%3A%20Assessment%20Demo%20Access" class="btn-primary">Experience the Assessment</a>
-        <a href="mailto:adam@generativeaisolutions.com?subject=Pathfinder%3A%20Investment%20%26%20Acquisition%20Enquiry" class="btn-outline">Investment &amp; Acquisition Enquiries</a>
+        <a href="mailto:adam@generativeaisolutions.com?subject=Turnstone%20for%20defence%3A%20demo%20access" class="btn-primary">Experience the assessment</a>
+        <a href="#how" class="btn-outline">How it works</a>
       </div>
-      <p class="demo-note mono" style="margin-top:20px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--tx3);">Limited demo accounts available</p>
+      <p class="mono" style="margin-top:20px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--tx3);">Early access · Invitation only</p>
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);">
-    <div class="grid-2col" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,1fr) minmax(0,2.2fr);gap:56px;align-items:start;">
+  <section>
+    <div class="wrap grid-2col" style="display:grid;grid-template-columns:minmax(220px,1fr) minmax(0,2.2fr);gap:56px;align-items:start;">
       <div>
-        <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">01 / The Problem</div>
-        <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Rank is not a competency measure.</h2>
+        <div class="label">01 / The problem</div>
+        <h2 class="h2">Rank is not a competency measure.</h2>
       </div>
-      <div style="display:grid;gap:1px;background:var(--border);border-top:3px solid var(--red);">
-        <div style="background:var(--surface);padding:24px;">
-          <h3 style="font-size:16px;font-weight:600;margin-bottom:8px;">CVs and interviews do not translate military competence</h3>
-          <p style="font-size:15px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Operational judgement, command decision-making and analytical rigour are compressed into job titles and dates. The substance is lost.</p>
+      <div class="ruled" style="border-top:3px solid var(--red);">
+        <div>
+          <h3>CVs and interviews do not translate military competence</h3>
+          <p>Operational judgement, command decision-making and analytical rigour are compressed into job titles and dates. The substance is lost.</p>
         </div>
-        <div style="background:var(--surface);padding:24px;">
-          <h3 style="font-size:16px;font-weight:600;margin-bottom:8px;">Employers use rank as a proxy for capability</h3>
-          <p style="font-size:15px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Two officers of identical rank can differ substantially in the competencies a director-level industry role actually requires. Rank does not distinguish them.</p>
+        <div>
+          <h3>Employers use rank as a proxy for capability</h3>
+          <p>Two officers of identical rank can differ substantially in how they work. Rank does not distinguish them.</p>
         </div>
-        <div style="background:var(--surface);padding:24px;">
-          <h3 style="font-size:16px;font-weight:600;margin-bottom:8px;">The cost is borne on both sides</h3>
-          <p style="font-size:15px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Mismatched hires, wasted capability, and transitions that fail in the first eighteen months.</p>
+        <div>
+          <h3>The cost is borne on both sides</h3>
+          <p>Mismatched hires, wasted capability, and capable people passed over because their experience doesn't read across.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);background:var(--inset);">
-    <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">02 / What Pathfinder Does</div>
-      <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;max-width:720px;text-wrap:pretty;">Four instruments, one evidence framework.</h2>
-      <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;color:var(--tx3);margin-bottom:14px;">01</div>
-          <h3 style="font-size:17px;font-weight:600;margin-bottom:10px;">Competency assessment</h3>
-          <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Multi-dimensional measurement across six defence domains and nineteen competencies.</p>
+  <section class="alt">
+    <div class="wrap">
+      <div class="label">02 / The hardest part of the move</div>
+      <h2 class="h2">In the forces, authority comes with the role. In a civilian organisation, it often doesn't.</h2>
+      <p class="lede">A new senior hire from the forces usually has to get things done through people who don't report to them: a founder, investors, a partner, a team they have only just met. Turnstone is built around exactly that. In every situation the candidate arrives new, in a civilian workplace, with no one to give orders to. You can't order; you have to ask.</p>
+      <div class="ruled" style="margin-top:40px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border-top:3px solid var(--accent);">
+        <div><h3>The CV</h3><p>What they have done, in their own words, often in language a civilian employer can't read.</p></div>
+        <div><h3>Reasoning tests</h3><p>How they handle numbers, words and logic.</p></div>
+        <div><h3>The interview</h3><p>How they present, and what they choose to tell you.</p></div>
+        <div style="background:var(--accent-light);"><h3 style="color:var(--accent);">Turnstone</h3><p>What they actually do with a situation they didn't create, people they don't control, and news that changes the picture.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="label">03 / What Turnstone does</div>
+      <h2 class="h2">Four situations, three tests, one profile.</h2>
+      <p class="lede">The same for every candidate, so employers compare like with like.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="tag">01</div>
+          <h3>Four workplace situations</h3>
+          <p>A payroll incident, a workshop floor, an investor review, a partner meeting. Each is one picture and a short brief, designed to take 15 to 20 minutes.</p>
         </div>
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;color:var(--tx3);margin-bottom:14px;">02</div>
-          <h3 style="font-size:17px;font-weight:600;margin-bottom:10px;">Visual scenario assessment</h3>
-          <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Candidates study rich operational imagery and demonstrate analytical thinking across four phases: Observe, Assess, Recommend, Anticipate.</p>
+        <div class="card">
+          <div class="tag">02</div>
+          <h3>Three reasoning tests</h3>
+          <p>Numerical, verbal and logical, taken at any time. Shown beside the situations, never added to them.</p>
         </div>
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;color:var(--tx3);margin-bottom:14px;">03</div>
-          <h3 style="font-size:17px;font-weight:600;margin-bottom:10px;">Psychometric modules</h3>
-          <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Numerical, verbal and logical reasoning under timed, defence-contextualised conditions.</p>
+        <div class="card">
+          <div class="tag">03</div>
+          <h3>A short written note</h3>
+          <p>About 80 words, shown to the employer exactly as written. Never scored.</p>
         </div>
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--gold);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;color:var(--tx3);margin-bottom:14px;">04</div>
-          <h3 style="font-size:17px;font-weight:600;margin-bottom:10px;">Career pathway matching</h3>
-          <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Objective fit scoring against eleven senior defence-industry role benchmarks.</p>
+        <div class="card gold">
+          <div class="tag">04</div>
+          <h3>Service background, as context</h3>
+          <p>Candidates can record their service background and what they are looking for. It is shown as context and never scored. Clearance is shown only if they choose.</p>
         </div>
       </div>
-      <div style="margin-top:20px;background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--green);padding:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start;">
+      <div class="card green" style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start;">
         <div>
-          <h3 style="font-size:17px;font-weight:600;margin-bottom:10px;">Deterministic scoring</h3>
-          <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">A weighted evidence framework with calibrated thresholds. AI reads the response to identify evidence; the framework does the scoring, so the same evidence produces the same result every time.</p>
+          <h3>Scored by code</h3>
+          <p>Each situation has an answer key written before any candidate sat it. The rules score what the candidate pinned, joined and decided, so the same choices produce the same result every time.</p>
         </div>
         <ul class="mono" style="display:grid;gap:8px;font-size:12px;letter-spacing:0.04em;color:var(--tx2);">
-          <li>Scoring executed server-side</li>
-          <li>Assessment IP never exposed to client</li>
-          <li>Bias-resistant by construction</li>
+          <li>Scoring runs on the server</li>
+          <li>Answer keys never reach the browser</li>
+          <li>No AI marks anyone</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);">
-    <div class="grid-2col" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:start;">
+  <section class="alt">
+    <div class="wrap grid-2col" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:start;">
       <div>
-        <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">03 / The Assessment Experience</div>
-        <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;text-wrap:pretty;">Structured situational judgement through image-based analysis.</h2>
-        <p style="margin-top:20px;font-size:16px;line-height:1.65;color:var(--tx2);text-wrap:pretty;">This is not a quiz. Candidates are presented with realistic operational scenarios and work through them in four disciplined phases. What is measured is how they reason: the observations they prioritise, the inferences they draw, the courses of action they propose, and the second-order consequences they anticipate.</p>
-        <p style="margin-top:20px;font-size:16px;line-height:1.65;color:var(--tx2);text-wrap:pretty;">Because the scenarios reward reasoning rather than recall, the assessment cannot be rehearsed or gamed.</p>
-        <blockquote style="margin-top:28px;padding:20px 24px;background:var(--accent-light);border-left:3px solid var(--accent);font-size:16px;line-height:1.55;color:var(--tx1);text-wrap:pretty;">Early testers describe it as engaging, more like solving a real problem than taking a test.</blockquote>
+        <div class="label">04 / The assessment experience</div>
+        <h2 class="h2">Not a quiz. A situation they didn't create.</h2>
+        <p class="lede">Candidates study one picture of a workplace in the middle of something, and work it the way they would on their first week in a new role. What is recorded is how they reason: what they notice, which things they put together, the calls they make, and who they go to.</p>
+        <p class="lede">They show it by doing, not by writing about it. Judgement counts only when their own board backs the answer, so a lucky guess on its own earns nothing.</p>
       </div>
-      <div style="display:grid;gap:1px;background:var(--border);border-top:3px solid var(--accent);">
-        <div style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
-          <span class="mono" style="font-size:12px;font-weight:500;color:var(--accent);">P1</span>
-          <div><h4 style="font-size:15px;font-weight:600;">Observe</h4><p style="margin-top:6px;font-size:14px;line-height:1.55;color:var(--tx2);">What is present, and what matters.</p></div>
-        </div>
-        <div style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
-          <span class="mono" style="font-size:12px;font-weight:500;color:var(--accent);">P2</span>
-          <div><h4 style="font-size:15px;font-weight:600;">Assess</h4><p style="margin-top:6px;font-size:14px;line-height:1.55;color:var(--tx2);">What it means under uncertainty.</p></div>
-        </div>
-        <div style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
-          <span class="mono" style="font-size:12px;font-weight:500;color:var(--accent);">P3</span>
-          <div><h4 style="font-size:15px;font-weight:600;">Recommend</h4><p style="margin-top:6px;font-size:14px;line-height:1.55;color:var(--tx2);">What action follows, and why.</p></div>
-        </div>
-        <div style="background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;">
-          <span class="mono" style="font-size:12px;font-weight:500;color:var(--accent);">P4</span>
-          <div><h4 style="font-size:15px;font-weight:600;">Anticipate</h4><p style="margin-top:6px;font-size:14px;line-height:1.55;color:var(--tx2);">What happens next, and what breaks.</p></div>
-        </div>
-        <div class="mono" style="background:var(--inset);padding:16px 24px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Four-phase methodology · 24 scenarios · 4 difficulty levels</div>
+      <div class="ruled" style="border-top:3px solid var(--accent);">
+        <div class="phase"><span>01</span><div><h4>Pin</h4><p>What matters, in the scene or the brief.</p></div></div>
+        <div class="phase"><span>02</span><div><h4>Join</h4><p>Which things belong together, and what each link helps decide.</p></div></div>
+        <div class="phase"><span>03</span><div><h4>Decide</h4><p>What they would do.</p></div></div>
+        <div class="phase"><span>04</span><div><h4>The news</h4><p>Something changes. What they change in response.</p></div></div>
+        <div class="phase"><span>05</span><div><h4>Approach</h4><p>Who they go to, and in what order.</p></div></div>
+        <div class="phase"><span>06</span><div><h4>Last look</h4><p>What would most change their mind.</p></div></div>
+        <div class="mono" style="background:var(--inset);padding:16px 24px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">4 situations · 15 to 20 minutes each · practice room first</div>
       </div>
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);background:var(--inset);">
-    <div style="max-width:1180px;margin:0 auto;">
+  <section>
+    <div class="wrap">
       <div style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:end;">
         <div>
-          <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">04 / Inside the Assessment</div>
-          <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;max-width:640px;text-wrap:pretty;">The scenario briefing, as the candidate sees it.</h2>
+          <div class="label">05 / Inside the assessment</div>
+          <h2 class="h2" style="max-width:640px;">A candidate's board, as the platform draws it.</h2>
         </div>
-        <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);max-width:380px;text-wrap:pretty;">A single operational environment, densely populated with real technical evidence. The candidate reads the room before responding.</p>
+        <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);max-width:380px;">What they pinned, the pairs they joined, and the decision each link helps with. Every situation is a civilian workplace, on purpose: that is the move a service leaver makes.</p>
       </div>
 
       <div style="margin-top:40px;background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);">
-        <div class="mono" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;border-bottom:1px solid var(--border);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx3);">
-          <span>Pathfinder · Scenario Briefing</span>
-          <span>Level 3 · Technical Evaluation</span>
+        <div class="mono" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:12px 20px;border-bottom:1px solid var(--border);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx3);">
+          <span>Turnstone · Evidence board</span>
+          <span>Illustrative · not one of the four rooms</span>
         </div>
-        <div style="display:block;background:var(--inset);">
-          <img src="uploads/vanguard-scene.jpg" alt="Operational scenario: a defence technology test laboratory during a tactical communications integration test, with results boards, specification data and architecture diagrams on the walls." style="display:block;width:100%;height:auto;">
+        <div class="board">
+          <img src="uploads/board-scene.jpg" alt="A boardroom at 05:15. Screens show an unsolicited takeover approach, a share price, a cash position with 18 months of runway, and a response deadline at the 07:00 market open. Six things are pinned with numbered gold pins, and three gold strings join them in pairs." width="1600" height="893">
+          <svg class="strings" viewBox="0 0 1000 558" preserveAspectRatio="none" aria-hidden="true">
+            <g class="under"><line x1="703" y1="100" x2="925" y2="287"/><line x1="287" y1="180" x2="940" y2="196"/><line x1="745" y1="225" x2="315" y2="434"/></g>
+            <g class="over"><line x1="703" y1="100" x2="925" y2="287"/><line x1="287" y1="180" x2="940" y2="196"/><line x1="745" y1="225" x2="315" y2="434"/></g>
+          </svg>
+          <span class="bpin" style="left:70.3%;top:18%;">1</span>
+          <span class="bpin" style="left:92.5%;top:51.5%;">2</span>
+          <span class="bpin" style="left:28.7%;top:32.3%;">3</span>
+          <span class="bpin" style="left:94%;top:35.1%;">4</span>
+          <span class="bpin" style="left:74.5%;top:40.3%;">5</span>
+          <span class="bpin" style="left:31.5%;top:77.8%;">6</span>
         </div>
-        <div class="scenario-inner" style="padding:32px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,1fr);gap:32px;align-items:start;">
-          <div>
-            <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);">Scenario assessment</div>
-            <h3 style="margin-top:12px;font-size:26px;line-height:1.2;font-weight:600;letter-spacing:-0.02em;text-wrap:pretty;">Communications Systems Test Centre: Project VANGUARD</h3>
-            <p style="margin-top:14px;font-size:16px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">A structured defence technology evaluation scenario testing technical evaluation and systems integration through observation of a tactical communications integration test programme.</p>
-            <div style="margin-top:24px;background:var(--inset);padding:24px;">
-              <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--tx3);">Briefing</div>
-              <p style="margin-top:16px;font-size:15px;line-height:1.65;color:var(--tx1);text-wrap:pretty;">You have arrived at a defence technology test laboratory where a new tactical communications system, Project VANGUARD, is undergoing integration testing with existing military communications infrastructure. This is Day 2 of a 5-day test programme, and the integration tests are in progress.</p>
-              <p style="margin-top:14px;font-size:15px;line-height:1.65;color:var(--tx1);text-wrap:pretty;">Your task is to study the room: the test results, specification boards, architecture diagrams, compatibility data, and how the evaluation is being conducted. Consider whether the system meets its requirements, how well it integrates with existing networks, and what the test findings mean for the programme.</p>
-              <p style="margin-top:14px;font-size:15px;line-height:1.65;color:var(--tx1);text-wrap:pretty;">You will respond across four phases: Observe, Assess, Recommend, and Anticipate. Take your time with the image before you begin.</p>
-            </div>
-            <div class="mono" style="margin-top:20px;display:flex;flex-wrap:wrap;gap:28px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">
-              <span>4 phases</span>
-              <span style="color:var(--amber);">30 minute time limit</span>
-              <span>Type or dictate responses</span>
-            </div>
-          </div>
-          <div>
-            <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--tx3);">Response phases</div>
-            <div style="margin-top:16px;display:grid;gap:1px;background:var(--border);border-left:3px solid var(--accent);">
-              <div style="background:var(--accent-light);padding:16px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;">
-                <span class="mono" style="font-size:11.5px;font-weight:500;color:var(--accent);">P1</span>
-                <span style="font-size:15px;font-weight:600;color:var(--tx1);">Observe</span>
-                <span class="mono" style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);">Free text</span>
-              </div>
-              <div style="background:var(--surface);padding:16px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;">
-                <span class="mono" style="font-size:11.5px;font-weight:500;color:var(--tx3);">P2</span>
-                <span style="font-size:15px;font-weight:500;color:var(--tx2);">Assess</span>
-                <span class="mono" style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Free text</span>
-              </div>
-              <div style="background:var(--surface);padding:16px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;">
-                <span class="mono" style="font-size:11.5px;font-weight:500;color:var(--tx3);">P3</span>
-                <span style="font-size:15px;font-weight:500;color:var(--tx2);">Recommend</span>
-                <span class="mono" style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Free text</span>
-              </div>
-              <div style="background:var(--surface);padding:16px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;">
-                <span class="mono" style="font-size:11.5px;font-weight:500;color:var(--tx3);">P4</span>
-                <span style="font-size:15px;font-weight:500;color:var(--tx2);">Anticipate</span>
-                <span class="mono" style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Free text</span>
-              </div>
-            </div>
-            <p style="margin-top:16px;font-size:13.5px;line-height:1.55;color:var(--tx2);text-wrap:pretty;">Responses are free text. There are no options to choose from and nothing to eliminate. Candidates write as they would in a briefing, and can type or dictate their responses.</p>
-          </div>
-        </div>
+        <ul class="blinks" style="border-top:1px solid var(--border);">
+          <li><b>1 + 2</b><span class="for">For: when to respond</span><q>It's 05:15 and the response is due at the 07:00 open.</q></li>
+          <li><b>3 + 4</b><span class="for">For: the offer</span><q>The approach is priced well above where the shares trade.</q></li>
+          <li><b>5 + 6</b><span class="for">For: standing alone</span><q>Eighteen months of runway is exactly where the cliff is.</q></li>
+        </ul>
       </div>
       <div style="margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;border-top:1px solid var(--border);padding-top:16px;">
         <span class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Note</span>
-        <p style="font-size:13.5px;line-height:1.6;color:var(--tx2);max-width:820px;text-wrap:pretty;">Illustrative briefing screen, one of 24 scenarios. Scenario content is shown for context only; the questions candidates answer, and everything that happens after a response is submitted, are not shown.</p>
+        <p style="font-size:13.5px;line-height:1.6;color:var(--tx2);max-width:820px;">Drawn on a scene that is not one of the four situations, so it gives nothing away. The situations themselves, their questions and their keys are never shown outside the platform.</p>
       </div>
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);">
-    <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);">05 / Positioning</div>
-      <h2 style="margin-top:16px;font-size:clamp(30px,4vw,46px);line-height:1.08;font-weight:600;letter-spacing:-0.025em;max-width:780px;text-wrap:pretty;">AI reads. The framework scores.</h2>
-      <p style="margin-top:20px;font-size:16.5px;line-height:1.65;color:var(--tx2);max-width:720px;text-wrap:pretty;">Competitors use AI as the scorer, so a candidate's result rests on a system that cannot explain its reasoning, cannot reproduce its own output, and cannot be audited. Pathfinder uses AI in exactly one step: reading candidate responses to identify which evidence elements were raised. Everything after that is deterministic. The LLM identifies what you said. The scoring engine decides what it means.</p>
-      <div class="grid-3col" style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--border);border-top:3px solid var(--accent);">
-        <div style="background:var(--surface);padding:26px 24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Deterministic</div>
-          <h3 style="font-size:17px;font-weight:600;margin-bottom:10px;">The AI is a reader, not a judge</h3>
-          <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">The language model performs one task: pattern-matching a free-text response against a defined set of evidence elements. It makes no judgement about quality, seniority or fit.</p>
-        </div>
-        <div style="background:var(--surface);padding:26px 24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Structured</div>
-          <h3 style="font-size:17px;font-weight:600;margin-bottom:10px;">Scoring is deterministic</h3>
-          <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Once evidence is identified, a weighted framework with calibrated thresholds produces the result in code. Identical evidence yields an identical score on every run, for every candidate.</p>
-        </div>
-        <div style="background:var(--surface);padding:26px 24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Traceable</div>
-          <h3 style="font-size:17px;font-weight:600;margin-bottom:10px;">No black-box scoring</h3>
-          <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Every result traces back to specific evidence, specific weights and specific thresholds. Defensible to a hiring panel, an auditor, or a candidate who asks why.</p>
-        </div>
-      </div>
-      <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border);border-top:3px solid var(--accent);">
-        <div style="background:var(--surface);padding:20px 22px;">
-          <div class="mono" style="font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx3);margin-bottom:10px;">Step 1 · AI</div>
-          <p style="font-size:14.5px;line-height:1.55;color:var(--tx1);font-weight:500;">Reads the response</p>
-          <p style="margin-top:6px;font-size:13.5px;line-height:1.55;color:var(--tx2);text-wrap:pretty;">Identifies which evidence elements the candidate raised.</p>
-        </div>
-        <div style="background:var(--surface);padding:20px 22px;">
-          <div class="mono" style="font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Step 2 · Framework</div>
-          <p style="font-size:14.5px;line-height:1.55;color:var(--tx1);font-weight:500;">Applies weights and thresholds</p>
-          <p style="margin-top:6px;font-size:13.5px;line-height:1.55;color:var(--tx2);text-wrap:pretty;">Deterministic code, no model judgement.</p>
-        </div>
-        <div style="background:var(--surface);padding:20px 22px;">
-          <div class="mono" style="font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Step 3 · Output</div>
-          <p style="font-size:14.5px;line-height:1.55;color:var(--tx1);font-weight:500;">Traceable result</p>
-          <p style="margin-top:6px;font-size:13.5px;line-height:1.55;color:var(--tx2);text-wrap:pretty;">Every score attributable to the evidence behind it.</p>
-        </div>
-      </div>
-      <div style="margin-top:20px;background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--gold);padding:26px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;align-items:start;">
+  <section class="alt">
+    <div class="wrap">
+      <div class="label on">06 / Positioning</div>
+      <h2 class="h2" style="font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-0.025em;max-width:780px;">No AI marks anyone.</h2>
+      <p class="lede" style="font-size:16.5px;">Some assessment tools now use AI to judge a candidate's answers, so the result rests on a system that cannot fully explain itself or be relied on to give the same answer twice. Turnstone takes AI out of marking altogether. Candidates show their reasoning through what they pin, join and decide, and fixed rules score it.</p>
+      <div class="ruled" style="margin-top:40px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border-top:3px solid var(--accent);">
         <div>
-          <h3 style="font-size:17px;font-weight:600;margin-bottom:10px;">Where the IP actually sits</h3>
-          <p style="font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">In structured rubrics, evidence weightings and calibrated thresholds held server-side, not in prompts. The platform was built through human-AI collaboration, which is an engineering fact rather than a feature claim; the assessment methodology is human-authored, domain-calibrated and explainable on its own terms.</p>
+          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Deterministic</div>
+          <h3 style="font-size:17px;">The same choices, the same result</h3>
+          <p style="font-size:14.5px;">Scoring is code, run on the server. Identical choices yield an identical result on every run, for every candidate.</p>
         </div>
-        <div style="display:grid;gap:1px;background:var(--border);">
-          <div class="mono" style="background:var(--inset);padding:12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);"><span>AI as the scorer</span><span>AI as the reader</span></div>
-          <div style="background:var(--surface);padding:12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13.5px;color:var(--tx2);"><span>Probabilistic scoring</span><span style="color:var(--tx1);font-weight:500;">Deterministic scoring</span></div>
-          <div style="background:var(--surface);padding:12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13.5px;color:var(--tx2);"><span>Opaque reasoning</span><span style="color:var(--tx1);font-weight:500;">Traceable evidence</span></div>
-          <div style="background:var(--surface);padding:12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13.5px;color:var(--tx2);"><span>Prompt-based IP</span><span style="color:var(--tx1);font-weight:500;">Rubric-based IP</span></div>
-          <div style="background:var(--surface);padding:12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13.5px;color:var(--tx2);"><span>Inconsistent between runs</span><span style="color:var(--tx1);font-weight:500;">Consistent every run</span></div>
+        <div>
+          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Structured</div>
+          <h3 style="font-size:17px;">Judgement has to be backed</h3>
+          <p style="font-size:14.5px;">A decision earns credit only when the candidate's own board supports it. Picking the right option without the reasoning behind it earns nothing.</p>
+        </div>
+        <div>
+          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Traceable</div>
+          <h3 style="font-size:17px;">Nothing a black box decided</h3>
+          <p style="font-size:14.5px;">Every line of the profile traces back to something the candidate did. Defensible to a hiring panel, or to a candidate who asks why.</p>
+        </div>
+      </div>
+      <div class="card gold" style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;align-items:start;">
+        <div>
+          <h3>Never ranked</h3>
+          <p>No single score, no league table, no pass mark. Employers compare two or three candidates side by side, in the order they choose, never sorted and never totalled. Turnstone is one more way to see a candidate, beside everything else they know.</p>
+        </div>
+        <div class="ruled">
+          <div class="vs head"><span>AI as the marker</span><span>Turnstone</span></div>
+          <div class="vs"><span>Probabilistic result</span><span>Same choices, same result</span></div>
+          <div class="vs"><span>Opaque reasoning</span><span>Traceable to what they did</span></div>
+          <div class="vs"><span>Rewards fluent writing</span><span>Built from their choices</span></div>
+          <div class="vs"><span>One score to rank by</span><span>A profile, never ranked</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);background:var(--inset);">
-    <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">06 / Platform Architecture</div>
-      <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Three views, one evidence base.</h2>
-      <p style="margin-top:20px;font-size:16px;line-height:1.65;color:var(--tx2);max-width:720px;text-wrap:pretty;">The platform is built around three distinct perspectives that share a single competency evidence base. Each view is purpose-built for its user, and the same architecture serves every buyer type without customisation.</p>
-      <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">View 1</div>
-          <h3 style="font-size:18px;font-weight:600;">Recruiter</h3>
-          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">The hiring team. Manages assessment campaigns, reviews candidate evidence, compares competency fit scores against role benchmarks, and generates shortlists backed by data.</p>
+  <section>
+    <div class="wrap">
+      <div class="label">07 / Three views</div>
+      <h2 class="h2">Three views, one evidence base.</h2>
+      <p class="lede">Each view is built for the person using it. Every organisation sees only its own candidates.</p>
+      <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+        <div class="card">
+          <div class="tag">View 1</div>
+          <h3 style="font-size:18px;">Recruiter</h3>
+          <p>Invites candidates, follows their progress, reads each profile with an interview guide drawn from what the candidate did, and compares two or three side by side.</p>
         </div>
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--gold);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">View 2</div>
-          <h3 style="font-size:18px;font-weight:600;">Candidate</h3>
-          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">The person being assessed. Takes scenario and psychometric assessments, receives detailed competency reports, and sees how their profile maps against defence-industry career pathways.</p>
+        <div class="card gold">
+          <div class="tag">View 2</div>
+          <h3 style="font-size:18px;">Candidate</h3>
+          <p>Sits the situations and tests, gets a report after each room, then a full profile in language a civilian employer understands. It tells the same story the employer reads.</p>
         </div>
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--green);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:12px;">View 3</div>
-          <h3 style="font-size:18px;font-weight:600;">Client</h3>
-          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">The hiring authority. Sees aggregated candidate intelligence, manages roles and requirements, and makes informed decisions with competency evidence rather than CVs and interviews.</p>
+        <div class="card green">
+          <div class="tag">View 3</div>
+          <h3 style="font-size:18px;">Client</h3>
+          <p>The hiring company. Sees only the candidates shared with them, once each profile is complete, and compares them side by side.</p>
         </div>
       </div>
       <div style="margin-top:20px;background:var(--surface);box-shadow:var(--shadow);overflow-x:auto;">
@@ -340,148 +352,136 @@
             <tr style="border-bottom:2px solid var(--border);">
               <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);white-space:nowrap;">Platform view</th>
               <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);white-space:nowrap;">Defence prime</th>
-              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap;">Defence VC</th>
-              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);white-space:nowrap;">Government / MoD</th>
+              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap;">Defence startup or VC</th>
+              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);white-space:nowrap;">Search firm</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom:1px solid var(--border);">
               <td style="padding:14px 20px;font-weight:600;">Recruiter</td>
               <td style="padding:14px 20px;color:var(--tx2);">Internal talent acquisition</td>
-              <td style="padding:14px 20px;color:var(--tx2);">Portfolio company talent team</td>
-              <td style="padding:14px 20px;color:var(--tx2);">Resettlement programme coordinator</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Founder or portfolio talent team</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Consultant running the search</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
               <td style="padding:14px 20px;font-weight:600;">Candidate</td>
-              <td style="padding:14px 20px;color:var(--tx2);">Ex-military applicant</td>
-              <td style="padding:14px 20px;color:var(--tx2);">Ex-military applicant</td>
-              <td style="padding:14px 20px;color:var(--tx2);">Service leaver</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Service leaver or veteran</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Service leaver or veteran</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Service leaver or veteran</td>
             </tr>
             <tr>
               <td style="padding:14px 20px;font-weight:600;">Client</td>
-              <td style="padding:14px 20px;color:var(--tx2);">Hiring manager / programme lead</td>
+              <td style="padding:14px 20px;color:var(--tx2);">Hiring manager or programme lead</td>
               <td style="padding:14px 20px;color:var(--tx2);">Portfolio company</td>
-              <td style="padding:14px 20px;color:var(--tx2);">Department / force command</td>
+              <td style="padding:14px 20px;color:var(--tx2);">The company they are hiring for</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p style="margin-top:16px;font-size:13.5px;line-height:1.6;color:var(--tx3);max-width:720px;text-wrap:pretty;">The same platform, unmodified, serves each of these buyer types. The architecture is multi-tenant by design: a single deployment supports multiple organisations with role-based access and isolated data.</p>
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);">
-    <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">07 / Who This Serves</div>
-      <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Three constituencies, one evidence base.</h2>
-      <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:24px;">
-          <h3 style="font-size:18px;font-weight:600;">Defence primes</h3>
-          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">BAE · Leonardo · Thales · MBDA</p>
-          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Objective screening for director-level ex-military hires, with competency evidence that stands up to internal scrutiny.</p>
+  <section class="alt">
+    <div class="wrap">
+      <div class="label">08 / Who this serves</div>
+      <h2 class="h2">For anyone bringing military talent into a civilian role.</h2>
+      <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+        <div class="card">
+          <h3 style="font-size:18px;margin-bottom:0;">Defence primes</h3>
+          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">And their supply chain</p>
+          <p style="margin-top:14px;">Evidence on ex-military candidates for senior roles that stands up to internal scrutiny, beyond the CV and the interview.</p>
         </div>
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--gold);padding:24px;">
-          <h3 style="font-size:18px;font-weight:600;">Defence VCs</h3>
-          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Portfolio leadership</p>
-          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Identify and assess military talent for portfolio company leadership and advisory positions before commitment.</p>
+        <div class="card gold">
+          <h3 style="font-size:18px;margin-bottom:0;">Defence startups and VCs</h3>
+          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Leadership hires</p>
+          <p style="margin-top:14px;">See how a candidate works with people they don't control, before committing to them in a small team where that matters most.</p>
         </div>
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--green);padding:24px;">
-          <h3 style="font-size:18px;font-weight:600;">Government &amp; MoD</h3>
-          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Transition programmes</p>
-          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Support resettlement and transition with credible, evidence-based career intelligence at individual and cohort level.</p>
+        <div class="card green">
+          <h3 style="font-size:18px;margin-bottom:0;">Search firms</h3>
+          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Placing service leavers</p>
+          <p style="margin-top:14px;">Show clients more than a CV and a call: how your shortlist actually works, shared with them in one place.</p>
+        </div>
+        <div class="card" style="border-top-color:var(--tx2);">
+          <h3 style="font-size:18px;margin-bottom:0;">Service leavers</h3>
+          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">The candidate</p>
+          <p style="margin-top:14px;">A report of their own, in language a civilian employer reads, about how they get things done. Honest, and never a score.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);background:var(--inset);">
-    <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">08 / Platform Capability</div>
-      <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;">Built, calibrated, in operation.</h2>
-      <div class="grid-5col" style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);border-top:3px solid var(--accent);">
-        <div style="background:var(--surface);padding:28px 24px;">
-          <div class="mono" style="font-size:40px;font-weight:500;letter-spacing:-0.03em;color:var(--tx1);"><span data-count="24">24</span></div>
-          <div style="margin-top:10px;font-size:13.5px;line-height:1.45;color:var(--tx2);">Visual scenario assessments across 4 difficulty levels</div>
-        </div>
-        <div style="background:var(--surface);padding:28px 24px;">
-          <div class="mono" style="font-size:40px;font-weight:500;letter-spacing:-0.03em;color:var(--tx1);"><span data-count="613">613</span></div>
-          <div style="margin-top:10px;font-size:13.5px;line-height:1.45;color:var(--tx2);">Calibrated evidence elements across all scenario rubrics</div>
-        </div>
-        <div style="background:var(--surface);padding:28px 24px;">
-          <div class="mono" style="font-size:40px;font-weight:500;letter-spacing:-0.03em;color:var(--tx1);"><span data-count="331">331</span></div>
-          <div style="margin-top:10px;font-size:13.5px;line-height:1.45;color:var(--tx2);">Defined analytical error patterns</div>
-        </div>
-        <div style="background:var(--surface);padding:28px 24px;">
-          <div class="mono" style="font-size:40px;font-weight:500;letter-spacing:-0.03em;color:var(--tx1);"><span data-count="48">48</span></div>
-          <div style="margin-top:10px;font-size:13.5px;line-height:1.45;color:var(--tx2);">Psychometric questions across 3 reasoning modules</div>
-        </div>
-        <div style="background:var(--surface);padding:28px 24px;">
-          <div class="mono" style="font-size:40px;font-weight:500;letter-spacing:-0.03em;color:var(--tx1);"><span data-count="19">19</span></div>
-          <div style="margin-top:10px;font-size:13.5px;line-height:1.45;color:var(--tx2);">Measured competencies across 6 domains</div>
-        </div>
-        <div style="background:var(--surface);padding:28px 24px;">
-          <div class="mono" style="font-size:40px;font-weight:500;letter-spacing:-0.03em;color:var(--tx1);"><span data-count="11">11</span></div>
-          <div style="margin-top:10px;font-size:13.5px;line-height:1.45;color:var(--tx2);">Calibrated career pathway benchmarks</div>
-        </div>
+  <section>
+    <div class="wrap">
+      <div class="label">09 / Where it stands</div>
+      <h2 class="h2">Built, and in early access.</h2>
+      <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--border);border-top:3px solid var(--accent);">
+        <div class="stat"><div class="n"><span data-count="4">4</span></div><div class="d">Workplace situations, the same for every candidate</div></div>
+        <div class="stat"><div class="n"><span data-count="3">3</span></div><div class="d">Reasoning tests: numerical, verbal and logical</div></div>
+        <div class="stat"><div class="n"><span data-count="1">1</span></div><div class="d">Practice room first, never scored</div></div>
+        <div class="stat"><div class="n">0</div><div class="d">AI marks on any candidate</div></div>
+        <div class="stat"><div class="n">0</div><div class="d">Rankings, league tables or pass marks</div></div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--border);">
-        <div style="background:var(--inset);padding:20px 24px;font-size:14px;line-height:1.5;color:var(--tx2);">Server-side scoring: assessment IP never exposed to the client</div>
-        <div style="background:var(--inset);padding:20px 24px;font-size:14px;line-height:1.5;color:var(--tx2);">Deterministic and auditable: reproducible outcomes on identical evidence</div>
-        <div style="background:var(--inset);padding:20px 24px;font-size:14px;line-height:1.5;color:var(--tx2);">Bias-resistant: structured evidence in place of interviewer impression</div>
+        <div style="background:var(--inset);padding:20px 24px;font-size:14px;line-height:1.5;color:var(--tx2);">Server-side scoring: answer keys never reach the browser</div>
+        <div style="background:var(--inset);padding:20px 24px;font-size:14px;line-height:1.5;color:var(--tx2);">Reproducible: the same choices give the same result</div>
+        <div style="background:var(--inset);padding:20px 24px;font-size:14px;line-height:1.5;color:var(--tx2);">Invitation only: each organisation sees only its own candidates</div>
+      </div>
+      <div style="margin-top:20px;background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--amber);padding:24px;display:grid;gap:10px;">
+        <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);">Early access</div>
+        <h3 style="font-size:18px;font-weight:600;">Honest about where it stands.</h3>
+        <p style="font-size:15px;line-height:1.6;color:var(--tx2);max-width:760px;">Turnstone is new, and in early access with invited users. It has not yet been validated against job performance, and we don't claim it predicts it. Validation with real candidates comes next. Use it beside interviews and references, never instead of them.</p>
       </div>
     </div>
   </section>
 
-  <section style="padding:88px 32px;border-bottom:1px solid var(--border);">
-    <div style="max-width:1180px;margin:0 auto;">
-      <div class="mono" style="font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);">09 / Who Built This</div>
-      <h2 style="margin-top:16px;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;max-width:760px;text-wrap:pretty;">Generative AI Solutions builds assessment and decision software for the public safety and defence sectors.</h2>
-      <p style="margin-top:20px;font-size:16px;line-height:1.65;color:var(--tx2);max-width:720px;text-wrap:pretty;">Pathfinder is not a first attempt. We build systems that operate inside organisations where an unexplainable output is not acceptable, and we design for scrutiny from the outset.</p>
-      <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--green);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:12px;">In operation</div>
-          <h3 style="font-size:18px;font-weight:600;">ALICE</h3>
+  <section class="alt">
+    <div class="wrap">
+      <div class="label">10 / Who built this</div>
+      <h2 class="h2">Generative AI Solutions builds assessment and decision software for the public safety and defence sectors.</h2>
+      <p class="lede">Turnstone is not a first attempt. We build systems that operate inside organisations where an unexplainable output is not acceptable, and we design for scrutiny from the outset.</p>
+      <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+        <div class="card green">
+          <div class="tag">In operation</div>
+          <h3 style="font-size:18px;margin-bottom:0;">ALICE</h3>
           <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">UK Fire &amp; Rescue Services</p>
-          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">In use by UK Fire and Rescue Services. Built to the same principle as Pathfinder: structured, explainable output that a public body can stand behind.</p>
+          <p style="margin-top:14px;">In use by UK Fire and Rescue Services. Built to the same principle as Turnstone: structured, explainable output that a public body can stand behind.</p>
         </div>
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Sector experience</div>
-          <h3 style="font-size:18px;font-weight:600;">Public safety and defence</h3>
-          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">We work with organisations that operate under audit, procurement scrutiny and public accountability, and we build to those constraints rather than around them.</p>
+        <div class="card">
+          <div class="tag">Sector experience</div>
+          <h3 style="font-size:18px;">Public safety and defence</h3>
+          <p>We work with organisations that operate under audit, procurement scrutiny and public accountability, and we build to those constraints rather than around them.</p>
         </div>
-        <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--gold);padding:24px;">
-          <div class="mono" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Method</div>
-          <h3 style="font-size:18px;font-weight:600;">Explainable by design</h3>
-          <p style="margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">Every product we ship separates the reasoning a machine can help produce from the decisions a machine should not make on its own.</p>
+        <div class="card gold">
+          <div class="tag">Method</div>
+          <h3 style="font-size:18px;">Explainable by design</h3>
+          <p>Every product we ship separates what a machine can help with from the decisions a machine should not make on its own. In Turnstone, that means no machine judges a candidate.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section style="padding:96px 32px;border-bottom:1px solid var(--border);">
-    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
-      <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--accent);padding:32px;display:flex;flex-direction:column;gap:14px;">
-        <h3 style="font-size:22px;font-weight:600;letter-spacing:-0.015em;">Experience the assessment</h3>
-        <p style="font-size:15px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">The clearest way to evaluate Pathfinder is to sit the candidate assessment yourself. Request an account and work a full scenario end to end.</p>
-        <a href="mailto:adam@generativeaisolutions.com?subject=Pathfinder%3A%20Request%20Assessment%20Access" class="btn-sm-primary" style="margin-top:auto;align-self:flex-start;">Request access</a>
-        <div style="margin-top:4px;padding-top:16px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
-          <span style="font-size:14px;color:var(--tx2);">Already have access credentials?</span>
-          <a href="https://pathfinder-liard-delta.vercel.app/login" target="_blank" rel="noopener" class="btn-sm-outline">Login here</a>
-        </div>
-        <p class="demo-note mono" style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--tx3);">Limited demo accounts available</p>
+  <section style="padding-top:96px;padding-bottom:96px;">
+    <div class="wrap grid-2col" style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;">
+      <div class="card" style="padding:32px;display:flex;flex-direction:column;gap:14px;">
+        <h3 style="font-size:22px;letter-spacing:-0.015em;margin-bottom:0;">Experience the assessment</h3>
+        <p style="font-size:15px;">The clearest way to judge Turnstone is to sit it yourself. We can set up a demonstration login for the practice room and a situation, and walk you through example reports.</p>
+        <a href="mailto:adam@generativeaisolutions.com?subject=Turnstone%20for%20defence%3A%20demo%20access" class="btn-primary" style="align-self:flex-start;">Ask for a demo</a>
+        <p style="font-size:14px;color:var(--tx3);">Or email <span class="email" style="color:var(--tx1);font-weight:500;">adam@generativeaisolutions.com</span></p>
       </div>
-      <div style="background:var(--surface);box-shadow:var(--shadow);border-top:3px solid var(--gold);padding:32px;display:flex;flex-direction:column;gap:14px;">
-        <h3 style="font-size:22px;font-weight:600;letter-spacing:-0.015em;">Investment &amp; acquisition</h3>
-        <p style="font-size:15px;line-height:1.6;color:var(--tx2);text-wrap:pretty;">For diligence materials, platform architecture, or discussion of investment and acquisition, contact us directly.</p>
-        <a href="mailto:adam@generativeaisolutions.com?subject=Pathfinder%3A%20Investment%20%26%20Acquisition%20Enquiry" class="btn-sm-ghost" style="margin-top:auto;align-self:flex-start;">adam@generativeaisolutions.com</a>
+      <div class="card" style="padding:32px;display:flex;flex-direction:column;gap:14px;border-top-color:var(--border);">
+        <h3 style="font-size:22px;letter-spacing:-0.015em;margin-bottom:0;">Already invited?</h3>
+        <p style="font-size:15px;">Sign in with the email your invitation came to. If you are testing Turnstone for us, the testers' guide explains each step.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;">
+          <a href="https://pathfinder-liard-delta.vercel.app/login" class="btn-sm-outline">Sign in</a>
+          <a href="testers.html" class="btn-sm-outline" style="border-color:var(--border);color:var(--tx1);">Testers' guide</a>
+        </div>
       </div>
     </div>
   </section>
 
   <footer style="padding:40px 32px 56px;">
     <div class="footer-bar mono" style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">
-      <span>Pathfinder · Built by Generative AI Solutions</span>
-      <a href="mailto:adam@generativeaisolutions.com" style="color:var(--tx3);">adam@generativeaisolutions.com</a>
+      <span>Turnstone · Built by <a href="https://www.generativeaisolutions.com" style="color:var(--tx3);text-decoration:underline;">Generative AI Solutions</a></span>
       <span>&copy; 2026 Generative AI Solutions</span>
     </div>
   </footer>
@@ -505,29 +505,6 @@
     try { localStorage.setItem('pf-theme', theme); } catch(e) {}
     updateLabel();
   });
-
-  // Animated stat counters
-  var nodes = document.querySelectorAll('[data-count]');
-  if (nodes.length && 'IntersectionObserver' in window) {
-    var run = function(el) {
-      var target = parseInt(el.getAttribute('data-count'), 10);
-      var dur = 900, t0 = performance.now();
-      var step = function(now) {
-        var p = Math.min(1, (now - t0) / dur);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = String(Math.round(target * eased));
-        if (p < 1) requestAnimationFrame(step);
-      };
-      el.textContent = '0';
-      requestAnimationFrame(step);
-    };
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.6 });
-    nodes.forEach(function(n) { io.observe(n); });
-  }
 })();
 </script>
 </body>
