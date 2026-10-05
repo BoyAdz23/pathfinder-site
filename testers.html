@@ -6,14 +6,15 @@
 <title>Turnstone testers</title>
 <meta name="robots" content="noindex, nofollow, noarchive">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=Geist+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap">
 <style>
-/* The tester welcome (rewritten 1 October 2026). Feedback now happens inside Turnstone, signed in; the old form on
+/* The tester welcome (rewritten 1 October 2026; the platform's look, decision 54, and the clarity question, decision
+   58, added 5 October). Feedback now happens inside Turnstone, signed in; the old form on
    this page wrote to the database without signing in, which the platform's security sweep closed. */
 :root {
   --bg: #F6F7F4; --surface: #FFFFFF; --accent: #0E6B6B; --accent-hover: #094F4F; --accent-light: #E6F0EF;
   --ochre: #8A5A0B; --ochre-light: #FBF3E4; --text: #17212B; --text-2: #3E4953; --text-3: #5B6670; --border: #DCE0DC; --on-accent: #FFFFFF;
-  --display: "Fraunces", Georgia, serif; --sans: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --display: "Geist", system-ui, sans-serif; --mono: "Geist Mono", ui-monospace, monospace; --sans: "Public Sans", "Segoe UI", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) { :root {
   --bg: #0F1720; --surface: #172030; --accent: #4DB8B4; --accent-hover: #6CCBC7; --accent-light: rgba(77,184,180,0.12);
@@ -21,20 +22,23 @@
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 var(--sans); }
 a { color: var(--accent); }
-h1, h2 { font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+h1, h2 { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
 h1 { font-size: clamp(32px, 5vw, 46px); line-height: 1.08; } h2 { font-size: 24px; }
 p { margin: 0; }
 .wrap { max-width: 760px; margin: 0 auto; padding: 48px 20px 64px; display: grid; gap: 28px; }
 .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
 .lede { font-size: 18px; color: var(--text-2); }
 .muted { color: var(--text-2); } .note { font-size: 14px; color: var(--text-3); }
-.btn { display: inline-block; background: var(--accent); color: var(--on-accent); border-radius: 8px; padding: 12px 20px; font-weight: 700; text-decoration: none; justify-self: start; }
+.btn { display: inline-block; background: var(--accent); color: var(--on-accent); border-radius: 4px; padding: 12px 20px; font-weight: 700; text-decoration: none; justify-self: start; }
 .btn:hover { background: var(--accent-hover); color: var(--on-accent); }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; display: grid; gap: 10px; }
-.warm { background: var(--ochre-light); border-radius: 14px; padding: 22px; display: grid; gap: 10px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 22px; display: grid; gap: 10px; }
+.warm { background: var(--ochre-light); border-radius: 4px; padding: 22px; display: grid; gap: 10px; }
 ol { margin: 0; padding-left: 22px; display: grid; gap: 10px; }
 ol b { color: var(--text); }
 .brand { font: 600 22px var(--display); color: var(--text); text-decoration: none; }
+.eyebrow { font-family: var(--mono); font-weight: 500; letter-spacing: 0.14em; }
+.card { border-top: 2px solid var(--accent); }
+.warm { border-top: 2px solid var(--ochre); }
 </style>
 </head>
 <body>
@@ -52,7 +56,8 @@ ol b { color: var(--text); }
       <li><b>Join with your invitation link.</b> It works only with the email address it was sent to, once.</li>
       <li><b>Answer a few questions about you.</b> Your background and what you're looking for. Use made-up answers if you prefer: this is a test.</li>
       <li><b>Try the practice room.</b> About five minutes, not scored.</li>
-      <li><b>Work through the four situations,</b> in order, and the three reasoning tests, at any time. Each situation is designed to take 15 to 20 minutes, and you can stop and come back.</li>
+      <li><b>Work through the four situations,</b> in order, and the three reasoning tests, at any time. Each situation is designed to take 15 to 20 minutes, and you can stop and come back. If a word is unfamiliar, each situation explains its words under "Your briefing".</li>
+      <li><b>After each situation, answer "How clear was this situation?" honestly.</b> It comes just before that situation's report. It is never scored, and it tells us directly whether a situation needs to be clearer, so please don't skip it.</li>
       <li><b>Write the short note, check your words and send your profile,</b> then read your full profile.</li>
       <li><b>Tell us what you think.</b> Use "Tell us what you think" on your profile page, inside Turnstone, at any point.</li>
     </ol>
