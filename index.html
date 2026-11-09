@@ -145,6 +145,47 @@
   .detail h4{font-size:14.5px;font-weight:600;margin-bottom:6px;}
   .detail p{font-size:13.5px;line-height:1.55;color:var(--tx2);}
   .grid-2col > *{min-width:0;}
+  /* The recruiter's candidates table, drawn to match the platform (example data). */
+  .app{margin-top:36px;background:var(--surface);box-shadow:0 10px 30px rgba(0,0,0,0.10);border:1px solid var(--border);}
+  .appbar{display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--inset);border-bottom:1px solid var(--border);font:500 10.5px 'Geist Mono',ui-monospace,monospace;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);}
+  .appbar .dots{display:flex;gap:6px;} .appbar .dots i{width:9px;height:9px;border-radius:50%;background:var(--border);display:block;}
+  .appbar .url{flex:1;min-width:0;background:var(--surface);padding:5px 10px;border:1px solid var(--border);color:var(--tx2);text-transform:none;letter-spacing:0.02em;font-size:11.5px;}
+  .appbar .ex{color:var(--amber);}
+  .appbody{padding:18px;display:grid;gap:14px;}
+  .apphead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:flex-start;}
+  .tabs{display:flex;gap:1px;background:var(--border);border:1px solid var(--border);}
+  .tabs span{background:var(--surface);padding:8px 14px;font-size:13.5px;font-weight:600;display:grid;gap:2px;color:var(--tx2);}
+  .tabs span small{font-size:11px;font-weight:400;color:var(--tx3);}
+  .tabs span.on{background:var(--accent-light);color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent);}
+  .cmpbtn{background:var(--accent);color:#fff;font-size:12.5px;font-weight:500;padding:8px 14px;}
+  .jobs{display:flex;flex-wrap:wrap;gap:6px;}
+  .jobs span{font-size:12px;padding:5px 10px;border:1px solid var(--border);color:var(--tx2);}
+  .jobs span.on{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
+  .filt{border:1px solid var(--border);padding:12px 14px;display:grid;gap:10px;background:var(--bg);}
+  .filt b{font-size:13px;font-weight:600;}
+  .fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;}
+  .fg label{display:grid;gap:4px;font-size:11.5px;color:var(--tx2);}
+  .fg label span{border:1px solid var(--border);background:var(--surface);padding:5px 8px;font-size:12px;color:var(--tx1);}
+  .tw{overflow-x:auto;border:1px solid var(--border);}
+  table.ct{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap;}
+  table.ct th{text-align:left;padding:9px 10px;font-size:11.5px;font-weight:600;color:var(--tx2);border-bottom:1px solid var(--border);background:var(--surface);}
+  table.ct tr.grp th{font:500 10px 'Geist Mono',ui-monospace,monospace;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);border-bottom:none;padding-bottom:0;}
+  table.ct th.srt{color:var(--accent);}
+  table.ct td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--tx2);font-variant-numeric:tabular-nums;vertical-align:middle;}
+  table.ct .gs{border-left:1px solid var(--border);}
+  table.ct td.nm{color:var(--tx1);font-weight:600;}
+  .rc{display:grid;gap:3px;} .rc > span:first-child{color:var(--tx1);font-weight:500;}
+  .sq{display:flex;gap:2px;} .sq i{width:7px;height:7px;border:1px solid var(--accent);display:block;} .sq i.on{background:var(--accent);}
+  .tp{color:var(--gold);font-weight:500;}
+  .bd{font:600 11px 'Geist Mono',ui-monospace,monospace;letter-spacing:0.06em;text-transform:uppercase;padding:3px 8px;border:1px solid;}
+  .b-strong{color:#fff;background:var(--accent);border-color:var(--accent);}
+  .b-solid{color:var(--accent);background:var(--accent-light);border-color:var(--accent);}
+  .b-developing{color:var(--amber);border-color:var(--amber);}
+  .cb{display:inline-block;width:14px;height:14px;border:1.5px solid var(--tx3);vertical-align:middle;}
+  .cb.on{background:var(--accent);border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--surface);}
+  .sent{font-size:12px;} .jt{font-size:11.5px;padding:2px 7px;background:var(--inset);color:var(--tx2);}
+  .open{color:var(--accent);font-weight:500;font-size:12.5px;}
+  .appnote{font-size:12.5px;color:var(--tx3);}
   .seven{margin-top:40px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,3fr);gap:20px;align-items:start;}
   .tiles4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--border);border-top:3px solid var(--accent);}
   .tiles3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--border);border-top:3px solid var(--gold);}
@@ -280,7 +321,7 @@
 
       <div class="grid-2col" style="margin-top:36px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px;align-items:start;">
         <div class="prof">
-          <div class="hd"><span>Employer report · Candidate A</span><span>Example · made up</span></div>
+          <div class="hd"><span>Employer report · Candidate A</span><span>Illustrative example</span></div>
           <div class="bd">
             <div class="band"><span class="chip">Solid</span><small>Overall reading, from the four situations only</small></div>
             <div class="grp">The four situations</div>
@@ -301,7 +342,7 @@
         </div>
 
         <div class="prof">
-          <div class="hd"><span>Side by side · one shortlist</span><span>Example · made up</span></div>
+          <div class="hd"><span>Side by side · one shortlist</span><span>Illustrative example</span></div>
           <div style="padding:16px 20px 4px;border-bottom:1px solid var(--border);">
             <svg viewBox="40 20 500 345" role="img" aria-label="Radar comparing Candidate A and Candidate B on six lines: Notices what matters, Connects information, Makes sound calls, Adapts when news arrives, Works through the right people, Knows what would change their mind." style="width:100%;height:auto;display:block;">
               <polygon points="290.0,158.8 317.1,174.4 317.1,205.6 290.0,221.2 262.9,205.6 262.9,174.4" fill="none" stroke="var(--border)" stroke-width="1"/><polygon points="290.0,127.5 344.1,158.8 344.1,221.2 290.0,252.5 235.9,221.2 235.9,158.8" fill="none" stroke="var(--border)" stroke-width="1"/><polygon points="290.0,96.2 371.2,143.1 371.2,236.9 290.0,283.8 208.8,236.9 208.8,143.1" fill="none" stroke="var(--border)" stroke-width="1"/><polygon points="290.0,65.0 398.3,127.5 398.3,252.5 290.0,315.0 181.7,252.5 181.7,127.5" fill="none" stroke="var(--border)" stroke-width="1"/><line x1="290" y1="190" x2="290.0" y2="65.0" stroke="var(--border)" stroke-width="1"/><line x1="290" y1="190" x2="398.3" y2="127.5" stroke="var(--border)" stroke-width="1"/><line x1="290" y1="190" x2="398.3" y2="252.5" stroke="var(--border)" stroke-width="1"/><line x1="290" y1="190" x2="290.0" y2="315.0" stroke="var(--border)" stroke-width="1"/><line x1="290" y1="190" x2="181.7" y2="252.5" stroke="var(--border)" stroke-width="1"/><line x1="290" y1="190" x2="181.7" y2="127.5" stroke="var(--border)" stroke-width="1"/>
@@ -444,6 +485,25 @@
       <div class="label">08 / What each person sees</div>
       <h2 class="h2">Three views, one evidence base.</h2>
       <p class="lede">Each view is built for the person using it. Every organisation sees only its own candidates.</p>
+      <div class="app" role="img" aria-label="The recruiter's candidates table with six made-up candidates, grouped by overall reading, with competency and reasoning test percentages, job tags and compare ticks.">
+        <div class="appbar"><span class="dots"><i></i><i></i><i></i></span><span class="url">Turnstone · Candidates</span><span class="ex">Illustrative example</span></div>
+        <div class="appbody">
+          <div class="apphead">
+            <div class="tabs"><span class="on">Readings<small>Overall reading, competencies and tests: sort and filter</small></span><span>Progress<small>Who has done what, and what is sent</small></span></div>
+            <span class="cmpbtn">Compare 2</span>
+          </div>
+          <div class="jobs"><span class="on">All jobs · 6</span><span>COO, defence scale-up · 3</span><span>Programme director · 3</span></div>
+          <div class="filt"><b>Filter by what matters to you</b><div class="fg"><label>Overall reading<span>Any</span></label><label>Judgement<span>Any</span></label><label>Influence<span>Any</span></label><label>Credibility<span>Any</span></label><label>Adaptive comms<span>Any</span></label><label>Numerical<span>Any</span></label><label>Verbal<span>Any</span></label><label>Logical<span>Any</span></label></div></div>
+          <div class="tw"><table class="ct">
+            <thead>
+              <tr class="grp"><th colspan="3"></th><th colspan="4" class="gs">Competencies · sound and backed</th><th colspan="3" class="gs">Reasoning tests · correct</th><th colspan="3"></th></tr>
+              <tr><th></th><th>Candidate</th><th class="srt">Overall reading ▾</th><th class="gs">Judgement</th><th>Influence</th><th>Credibility</th><th>Adaptive comms</th><th class="gs">Numerical</th><th>Verbal</th><th>Logical</th><th class="gs">Sent</th><th>Jobs</th><th></th></tr>
+            </thead>
+            <tbody><tr><td><span class="cb on"></span></td><td class="nm">Priya Shah</td><td><span class="bd b-strong">Strong</span></td><td class="gs"><div class="rc"><span>84%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>79%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>76%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>81%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td class="gs"><span class="tp">58%</span></td><td><span class="tp">66%</span></td><td><span class="tp">61%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">COO, defence scale-up</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">James Okafor</td><td><span class="bd b-strong">Strong</span></td><td class="gs"><div class="rc"><span>80%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>75%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>82%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>72%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td class="gs"><span class="tp">70%</span></td><td><span class="tp">74%</span></td><td><span class="tp">68%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">Programme director</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb on"></span></td><td class="nm">Alex Morgan</td><td><span class="bd b-solid">Solid</span></td><td class="gs"><div class="rc"><span>78%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>61%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>70%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>52%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">72%</span></td><td><span class="tp">80%</span></td><td><span class="tp">64%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">COO, defence scale-up</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">Helen Ward</td><td><span class="bd b-solid">Solid</span></td><td class="gs"><div class="rc"><span>66%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>70%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>58%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>64%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">81%</span></td><td><span class="tp">77%</span></td><td><span class="tp">85%</span></td><td class="gs"><span class="sent">Not yet</span></td><td><span class="jt">Programme director</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">Tom Reilly</td><td><span class="bd b-developing">Developing</span></td><td class="gs"><div class="rc"><span>55%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>48%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td><div class="rc"><span>62%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>44%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">81%</span></td><td><span class="tp">74%</span></td><td><span class="tp">77%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">COO, defence scale-up</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">Sarah Kemp</td><td><span class="bd b-developing">Developing</span></td><td class="gs"><div class="rc"><span>50%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td><div class="rc"><span>57%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>41%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td><div class="rc"><span>46%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">64%</span></td><td><span class="tp">58%</span></td><td><span class="tp">70%</span></td><td class="gs"><span class="sent">Not yet</span></td><td><span class="jt">Programme director</span></td><td><span class="open">Open</span></td></tr></tbody>
+          </table></div>
+          <p class="appnote">Opens by overall reading. Sort by any column, filter by any reading, tick two or three to compare side by side.</p>
+        </div>
+      </div>
       <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
         <div class="card">
           <div class="tag">View 1</div>
