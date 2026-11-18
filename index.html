@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
-  /* Turnstone for defence (rewritten 2 October 2026, decision 50). The precision look of the August site, with
+  /* Turnstone (rewritten 2 October 2026, decision 50; broadened beyond defence 18 November 2026, decision 100). The precision look of the August site, with
      its content brought up to what is true today. */
   :root{
     --bg:#F2F0EC; --surface:#FFFFFF; --inset:#EDE9E3;
@@ -202,6 +202,9 @@
   @media(max-width:1000px){ .seven{grid-template-columns:1fr;} }
   @media(max-width:640px){ .tiles4{grid-template-columns:repeat(2,minmax(0,1fr));} .tiles3{grid-template-columns:1fr;} }
   .rl{fill:var(--tx2);font:500 11.5px Geist,system-ui,sans-serif;}
+  .cards.four{grid-template-columns:repeat(4,minmax(0,1fr));}
+  @media(max-width:1000px){ .cards.four{grid-template-columns:repeat(2,minmax(0,1fr));} }
+  @media(max-width:560px){ .cards.four{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -217,7 +220,7 @@
       <div style="display:flex;align-items:center;gap:8px;">
         <button id="themeToggle" class="theme-toggle" aria-label="Toggle colour scheme">Dark</button>
         <a href="https://pathfinder-liard-delta.vercel.app/login" class="nav-btn line hide-sm">Sign in</a>
-        <a href="mailto:adam@generativeaisolutions.com?subject=Turnstone%20for%20defence%3A%20demo" class="nav-btn solid">Ask for a demo</a>
+        <a href="mailto:adam@generativeaisolutions.com?subject=Turnstone%3A%20demo" class="nav-btn solid">Ask for a demo</a>
       </div>
     </div>
   </header>
@@ -225,16 +228,30 @@
   <!-- Hero -->
   <section style="padding-top:112px;padding-bottom:96px;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:64px 64px;background-position:center top;">
     <div class="wrap">
-      <div class="label on" style="margin-bottom:32px;">Military to civilian transition</div>
+      <div class="label on" style="margin-bottom:32px;">Leadership assessment</div>
       <h1 style="font-size:clamp(48px,8vw,104px);line-height:0.94;font-weight:700;letter-spacing:-0.035em;margin-bottom:32px;">Turnstone</h1>
       <p style="font-size:clamp(22px,2.8vw,34px);line-height:1.25;font-weight:500;letter-spacing:-0.02em;color:var(--tx1);max-width:860px;">See how a leader thinks before you make the hire.</p>
       <p style="margin-top:24px;font-size:17px;line-height:1.6;color:var(--tx2);max-width:680px;"><strong style="color:var(--tx1);font-weight:600;">Think escape room, scored like a situational judgement test.</strong> Candidates step into a live workplace situation, spot what matters, connect the clues and make the calls. Then the news changes, and you see what they do with it.</p>
       <p style="margin-top:20px;padding-left:16px;border-left:3px solid var(--accent);font-size:15.5px;line-height:1.6;color:var(--tx1);max-width:640px;">Every candidate works through the same situations, so every candidate ends with the same <strong>baseline profile</strong>: a like-for-like picture of how they lead, ready to compare across your shortlist.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:44px;">
-        <a href="mailto:adam@generativeaisolutions.com?subject=Turnstone%20for%20defence%3A%20demo%20access" class="btn-primary">Ask for a demo</a>
+        <a href="mailto:adam@generativeaisolutions.com?subject=Turnstone%3A%20demo%20access" class="btn-primary">Ask for a demo</a>
         <a href="#experience" class="btn-outline">See it in action</a>
       </div>
       <p class="mono" style="margin-top:20px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--tx3);">Early access · Invitation only · No AI marks anyone</p>
+    </div>
+  </section>
+
+  <!-- Why: what a CV, a test and an interview can't show (decision 100) -->
+  <section>
+    <div class="wrap">
+      <h2 class="h2">Most senior hires still come down to a CV, an interview and gut feel.</h2>
+      <p class="lede">Each shows something real. None shows how someone actually works when they arrive new, with people who don't report to them and a picture that keeps changing. That is the part Turnstone adds.</p>
+      <div class="ruled" style="margin-top:36px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));border-top:3px solid var(--accent);">
+        <div><h3>The CV</h3><p>What they have done, in their own words.</p></div>
+        <div><h3>Reasoning tests</h3><p>How they handle numbers, words and logic.</p></div>
+        <div><h3>The interview</h3><p>How they present, and what they choose to tell you.</p></div>
+        <div style="background:var(--accent-light);"><h3 style="color:var(--accent);">Turnstone</h3><p>What they actually do with a situation they didn't create, people they don't control, and news that changes the picture.</p></div>
+      </div>
     </div>
   </section>
 
@@ -386,7 +403,7 @@
         <p class="lede">Most assessments give a candidate nothing back. Turnstone gives every candidate a profile of their own, written for them, telling the same story the employer reads. <strong style="color:var(--tx1);font-weight:600;">That is how candidates are treated well</strong>, including the ones who don't get the role.</p>
         <div class="ruled" style="margin-top:32px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));border-top:3px solid var(--gold);">
           <div><h3>A report after each room</h3><p>A short read on how they worked it, while the situation is still fresh.</p></div>
-          <div><h3>A full profile of their own</h3><p>Their strengths and what to develop, in plain English a civilian employer reads.</p></div>
+          <div><h3>A full profile of their own</h3><p>Their strengths and what to develop, in plain English an employer reads.</p></div>
           <div><h3>Words they can use</h3><p>Interview phrases and CV lines from what they actually did, and a prompt to turn each strength into a story from their own career.</p></div>
           <div><h3>Ready for the conversation</h3><p>The questions they may be asked, and the same debrief questions the recruiter will use, so both work from one page.</p></div>
         </div>
@@ -409,40 +426,10 @@
     </div>
   </section>
 
-  <section class="alt">
-    <div class="wrap grid-2col" style="display:grid;grid-template-columns:minmax(220px,1fr) minmax(0,2.2fr);gap:56px;align-items:start;">
-      <div>
-        <div class="label">05 / The problem</div>
-        <h2 class="h2">Rank is not a competency measure.</h2>
-        <p style="margin-top:18px;font-size:15px;line-height:1.6;color:var(--tx2);">How a service leaver gets things done in a civilian workplace, where rank no longer gives the order, is the thing a CV and an interview find hardest to show.</p>
-      </div>
-      <div class="ruled" style="border-top:3px solid var(--red);">
-        <div><h3>CVs and interviews do not translate military competence</h3><p>Operational judgement, command decision-making and analytical rigour are compressed into job titles and dates. The substance is lost.</p></div>
-        <div><h3>Employers use rank as a proxy for capability</h3><p>Two officers of identical rank can differ substantially in how they work. Rank does not distinguish them.</p></div>
-        <div><h3>The cost is borne on both sides</h3><p>Mismatched hires, wasted capability, and capable people passed over because their experience doesn't read across.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 The hardest part of the move -->
-  <section>
-    <div class="wrap">
-      <div class="label">06 / The hardest part of the move</div>
-      <h2 class="h2">In the forces, authority comes with the role. In a civilian organisation, it often doesn't.</h2>
-      <p class="lede">A new senior hire from the forces usually has to get things done through people who don't report to them: a founder, investors, a partner, a team they have only just met. Turnstone is built around exactly that. In every situation the candidate arrives new, in a civilian workplace, with no one to give orders to. You can't order; you have to ask.</p>
-      <div class="ruled" style="margin-top:40px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border-top:3px solid var(--accent);">
-        <div><h3>The CV</h3><p>What they have done, in their own words, often in language a civilian employer can't read.</p></div>
-        <div><h3>Reasoning tests</h3><p>How they handle numbers, words and logic.</p></div>
-        <div><h3>The interview</h3><p>How they present, and what they choose to tell you.</p></div>
-        <div style="background:var(--accent-light);"><h3 style="color:var(--accent);">Turnstone</h3><p>What they actually do with a situation they didn't create, people they don't control, and news that changes the picture.</p></div>
-      </div>
-    </div>
-  </section>
-
   <!-- 05 How it is scored -->
   <section class="alt">
     <div class="wrap">
-      <div class="label on">07 / How it is scored</div>
+      <div class="label on">05 / How it is scored</div>
       <h2 class="h2" style="font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-0.025em;max-width:780px;">No AI marks anyone.</h2>
       <p class="lede" style="font-size:16.5px;">Some assessment tools now use AI to judge a candidate's answers, so the result rests on a system that cannot fully explain itself or be relied on to give the same answer twice. Turnstone takes AI out of marking altogether.</p>
       <div class="ruled" style="margin-top:40px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border-top:3px solid var(--accent);">
@@ -481,7 +468,7 @@
   <!-- 06 Three views -->
   <section>
     <div class="wrap">
-      <div class="label">08 / What each person sees</div>
+      <div class="label">06 / What each person sees</div>
       <h2 class="h2">Three views, one evidence base.</h2>
       <p class="lede">Each view is built for the person using it. Every organisation sees only its own candidates.</p>
       <div class="app" role="img" aria-label="The recruiter's candidates table with six made-up candidates, grouped by overall reading, with competency and reasoning test percentages, job tags and compare ticks.">
@@ -491,14 +478,14 @@
             <div class="tabs"><span class="on">Readings<small>Overall reading, competencies and tests: sort and filter</small></span><span>Progress<small>Who has done what, and what is sent</small></span></div>
             <span class="cmpbtn">Compare 2</span>
           </div>
-          <div class="jobs"><span class="on">All jobs · 6</span><span>COO, defence scale-up · 3</span><span>Programme director · 3</span></div>
+          <div class="jobs"><span class="on">All jobs · 6</span><span>COO, scale-up · 3</span><span>Programme director · 3</span></div>
           <div class="filt"><b>Filter by what matters to you</b><div class="fg"><label>Overall reading<span>Any</span></label><label>Judgement<span>Any</span></label><label>Influence<span>Any</span></label><label>Credibility<span>Any</span></label><label>Adaptive comms<span>Any</span></label><label>Numerical<span>Any</span></label><label>Verbal<span>Any</span></label><label>Logical<span>Any</span></label></div></div>
           <div class="tw"><table class="ct">
             <thead>
               <tr class="grp"><th colspan="3"></th><th colspan="4" class="gs">Competencies · sound and backed</th><th colspan="3" class="gs">Reasoning tests · correct</th><th colspan="3"></th></tr>
               <tr><th></th><th>Candidate</th><th class="srt">Overall reading ▾</th><th class="gs">Judgement</th><th>Influence</th><th>Credibility</th><th>Adaptive comms</th><th class="gs">Numerical</th><th>Verbal</th><th>Logical</th><th class="gs">Sent</th><th>Jobs</th><th></th></tr>
             </thead>
-            <tbody><tr><td><span class="cb on"></span></td><td class="nm">Priya Shah</td><td><span class="bandtag b-strong">Strong</span></td><td class="gs"><div class="rc"><span>84%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>79%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>76%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>81%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td class="gs"><span class="tp">58%</span></td><td><span class="tp">66%</span></td><td><span class="tp">61%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">COO, defence scale-up</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">James Okafor</td><td><span class="bandtag b-strong">Strong</span></td><td class="gs"><div class="rc"><span>80%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>75%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>82%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>72%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td class="gs"><span class="tp">70%</span></td><td><span class="tp">74%</span></td><td><span class="tp">68%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">Programme director</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb on"></span></td><td class="nm">Alex Morgan</td><td><span class="bandtag b-solid">Solid</span></td><td class="gs"><div class="rc"><span>78%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>61%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>70%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>52%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">72%</span></td><td><span class="tp">80%</span></td><td><span class="tp">64%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">COO, defence scale-up</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">Helen Ward</td><td><span class="bandtag b-solid">Solid</span></td><td class="gs"><div class="rc"><span>66%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>70%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>58%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>64%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">81%</span></td><td><span class="tp">77%</span></td><td><span class="tp">85%</span></td><td class="gs"><span class="sent">Not yet</span></td><td><span class="jt">Programme director</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">Tom Reilly</td><td><span class="bandtag b-developing">Developing</span></td><td class="gs"><div class="rc"><span>55%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>48%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td><div class="rc"><span>62%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>44%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">81%</span></td><td><span class="tp">74%</span></td><td><span class="tp">77%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">COO, defence scale-up</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">Sarah Kemp</td><td><span class="bandtag b-developing">Developing</span></td><td class="gs"><div class="rc"><span>50%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td><div class="rc"><span>57%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>41%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td><div class="rc"><span>46%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">64%</span></td><td><span class="tp">58%</span></td><td><span class="tp">70%</span></td><td class="gs"><span class="sent">Not yet</span></td><td><span class="jt">Programme director</span></td><td><span class="open">Open</span></td></tr></tbody>
+            <tbody><tr><td><span class="cb on"></span></td><td class="nm">Priya Shah</td><td><span class="bandtag b-strong">Strong</span></td><td class="gs"><div class="rc"><span>84%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>79%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>76%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>81%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td class="gs"><span class="tp">58%</span></td><td><span class="tp">66%</span></td><td><span class="tp">61%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">COO, scale-up</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">James Okafor</td><td><span class="bandtag b-strong">Strong</span></td><td class="gs"><div class="rc"><span>80%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>75%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>82%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>72%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td class="gs"><span class="tp">70%</span></td><td><span class="tp">74%</span></td><td><span class="tp">68%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">Programme director</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb on"></span></td><td class="nm">Alex Morgan</td><td><span class="bandtag b-solid">Solid</span></td><td class="gs"><div class="rc"><span>78%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>61%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>70%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>52%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">72%</span></td><td><span class="tp">80%</span></td><td><span class="tp">64%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">COO, scale-up</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">Helen Ward</td><td><span class="bandtag b-solid">Solid</span></td><td class="gs"><div class="rc"><span>66%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>70%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div></td><td><div class="rc"><span>58%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>64%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">81%</span></td><td><span class="tp">77%</span></td><td><span class="tp">85%</span></td><td class="gs"><span class="sent">Not yet</span></td><td><span class="jt">Programme director</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">Tom Reilly</td><td><span class="bandtag b-developing">Developing</span></td><td class="gs"><div class="rc"><span>55%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>48%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td><div class="rc"><span>62%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>44%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">81%</span></td><td><span class="tp">74%</span></td><td><span class="tp">77%</span></td><td class="gs"><span class="sent">Sent</span></td><td><span class="jt">COO, scale-up</span></td><td><span class="open">Open</span></td></tr><tr><td><span class="cb"></span></td><td class="nm">Sarah Kemp</td><td><span class="bandtag b-developing">Developing</span></td><td class="gs"><div class="rc"><span>50%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td><div class="rc"><span>57%</span><span class="sq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div></td><td><div class="rc"><span>41%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td><div class="rc"><span>46%</span><span class="sq"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div></td><td class="gs"><span class="tp">64%</span></td><td><span class="tp">58%</span></td><td><span class="tp">70%</span></td><td class="gs"><span class="sent">Not yet</span></td><td><span class="jt">Programme director</span></td><td><span class="open">Open</span></td></tr></tbody>
           </table></div>
           <p class="appnote">Opens by overall reading. Sort by any column, filter by any reading, tick two or three to compare side by side.</p>
         </div>
@@ -512,7 +499,7 @@
         <div class="card gold">
           <div class="tag">View 2</div>
           <h3 style="font-size:18px;">Candidate</h3>
-          <p>Sits the situations and tests and gets a full profile of their own, in language a civilian employer understands, with help preparing to talk it through. It tells the same story the employer reads.</p>
+          <p>Sits the situations and tests and gets a full profile of their own, in plain language any employer understands, with help preparing to talk it through. It tells the same story the employer reads.</p>
         </div>
         <div class="card green">
           <div class="tag">View 3</div>
@@ -526,26 +513,42 @@
             <tr style="border-bottom:2px solid var(--border);">
               <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);white-space:nowrap;">Platform view</th>
               <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);white-space:nowrap;">Search firm</th>
-              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);white-space:nowrap;">Defence prime</th>
-              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap;">Defence startup or VC</th>
+              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);white-space:nowrap;">In-house talent team</th>
+              <th class="mono" style="text-align:left;padding:16px 20px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap;">Investor or founder</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:14px 20px;font-weight:600;">Recruiter</td><td style="padding:14px 20px;color:var(--tx2);">Consultant running the search</td><td style="padding:14px 20px;color:var(--tx2);">Internal talent acquisition</td><td style="padding:14px 20px;color:var(--tx2);">Founder or portfolio talent team</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:14px 20px;font-weight:600;">Candidate</td><td style="padding:14px 20px;color:var(--tx2);">Service leaver or veteran</td><td style="padding:14px 20px;color:var(--tx2);">Service leaver or veteran</td><td style="padding:14px 20px;color:var(--tx2);">Service leaver or veteran</td></tr>
-            <tr><td style="padding:14px 20px;font-weight:600;">Client</td><td style="padding:14px 20px;color:var(--tx2);">The company they are hiring for</td><td style="padding:14px 20px;color:var(--tx2);">Hiring manager or programme lead</td><td style="padding:14px 20px;color:var(--tx2);">Portfolio company</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:14px 20px;font-weight:600;">Candidate</td><td style="padding:14px 20px;color:var(--tx2);">The shortlisted candidate</td><td style="padding:14px 20px;color:var(--tx2);">Internal or external candidate</td><td style="padding:14px 20px;color:var(--tx2);">Leadership candidate</td></tr>
+            <tr><td style="padding:14px 20px;font-weight:600;">Client</td><td style="padding:14px 20px;color:var(--tx2);">The company they are hiring for</td><td style="padding:14px 20px;color:var(--tx2);">Hiring manager or panel</td><td style="padding:14px 20px;color:var(--tx2);">Portfolio company</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <!-- 07 Who it is for -->
+  <!-- 07 Case study: military to civilian transition (decision 100) -->
   <section class="alt">
     <div class="wrap">
-      <div class="label">09 / Who it is for</div>
-      <h2 class="h2">For anyone bringing military talent into a senior civilian role.</h2>
-      <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr));">
+      <div class="grid-2col" style="display:grid;grid-template-columns:minmax(220px,1fr) minmax(0,2.2fr);gap:56px;align-items:start;">
+        <div>
+          <div class="label on">07 / Military to civilian transition</div>
+          <h2 class="h2">Rank is not a competency measure.</h2>
+          <p style="margin-top:18px;font-size:15px;line-height:1.6;color:var(--tx2);">One example of where Turnstone fits: senior people leaving the forces for civilian roles. How a service leaver gets things done in a civilian workplace, where rank no longer gives the order, is the thing a CV and an interview find hardest to show.</p>
+        </div>
+        <div class="ruled" style="border-top:3px solid var(--red);">
+          <div><h3>CVs and interviews do not translate military competence</h3><p>Operational judgement, command decision-making and analytical rigour are compressed into job titles and dates. The substance is lost.</p></div>
+          <div><h3>Employers use rank as a proxy for capability</h3><p>Two officers of identical rank can differ substantially in how they work. Rank does not distinguish them.</p></div>
+          <div><h3>The cost is borne on both sides</h3><p>Mismatched hires, wasted capability, and capable people passed over because their experience doesn't read across.</p></div>
+        </div>
+      </div>
+
+      <div style="margin-top:56px;padding-left:16px;border-left:3px solid var(--accent);max-width:820px;">
+        <h3 style="font-size:clamp(20px,2.4vw,24px);line-height:1.25;font-weight:600;letter-spacing:-0.015em;">In the forces, authority comes with the role. In a civilian organisation, it often doesn't.</h3>
+        <p style="margin-top:12px;font-size:15.5px;line-height:1.65;color:var(--tx2);">A new senior hire from the forces usually has to get things done through people who don't report to them: a founder, investors, a partner, a team they have only just met. Turnstone is built around exactly that. In every situation the candidate arrives new, in a civilian workplace, with no one to give orders to. You can't order; you have to ask. And their CV, often written in language a civilian employer can't read, no longer has to carry the whole case.</p>
+      </div>
+
+      <div class="cards four">
         <div class="card green">
           <h3 style="font-size:18px;margin-bottom:0;">Search firms</h3>
           <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Placing senior service leavers</p>
@@ -570,10 +573,41 @@
     </div>
   </section>
 
-  <!-- 08 Where it stands -->
+  <!-- 08 Who it is for (general, decision 100) -->
   <section>
     <div class="wrap">
-      <div class="label">10 / Where it stands</div>
+      <div class="label">08 / Who it is for</div>
+      <h2 class="h2">For anyone making a senior hire.</h2>
+      <p class="lede">The four situations are ordinary workplaces, and the four competencies are what any senior hire needs when they arrive new. Turnstone isn't tied to one sector.</p>
+      <div class="cards four">
+        <div class="card green">
+          <h3 style="font-size:18px;margin-bottom:0;">Search firms</h3>
+          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Running senior searches</p>
+          <p style="margin-top:14px;">Evidence beside your interview notes: how your shortlist actually works, in one report your client can read. It helps you show why these candidates are in front of them.</p>
+        </div>
+        <div class="card">
+          <h3 style="font-size:18px;margin-bottom:0;">In-house talent teams</h3>
+          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Senior and leadership hires</p>
+          <p style="margin-top:14px;">Evidence on senior hires that stands up to internal scrutiny, beyond the CV and the interview.</p>
+        </div>
+        <div class="card gold">
+          <h3 style="font-size:18px;margin-bottom:0;">Investors and founders</h3>
+          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">Leadership hires in a small team</p>
+          <p style="margin-top:14px;">See how a candidate works with people they don't control, before committing to them in a small team where that matters most.</p>
+        </div>
+        <div class="card" style="border-top-color:var(--tx2);">
+          <h3 style="font-size:18px;margin-bottom:0;">Candidates</h3>
+          <p class="mono" style="margin-top:6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx3);">The person being assessed</p>
+          <p style="margin-top:14px;">A profile of their own about how they get things done, and help preparing to talk it through. Honest, and never a score.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 Where it stands -->
+  <section class="alt">
+    <div class="wrap">
+      <div class="label">09 / Where it stands</div>
       <h2 class="h2">Built, and in early access.</h2>
       <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--border);border-top:3px solid var(--accent);">
         <div class="stat"><div class="n">4</div><div class="d">Workplace situations, the same for every candidate</div></div>
@@ -590,10 +624,10 @@
     </div>
   </section>
 
-  <!-- 09 Who built this (unchanged) -->
-  <section class="alt">
+  <!-- 10 Who built this (unchanged) -->
+  <section>
     <div class="wrap">
-      <div class="label">11 / Who built this</div>
+      <div class="label">10 / Who built this</div>
       <h2 class="h2">Generative AI Solutions builds assessment and decision-support software for highly regulated sectors.</h2>
       <p class="lede">Turnstone is not a first attempt. We build systems that operate inside organisations where an unexplainable output is not acceptable, and we design for scrutiny from the outset.</p>
       <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
@@ -623,7 +657,7 @@
       <div class="card" style="padding:32px;display:flex;flex-direction:column;gap:14px;">
         <h3 style="font-size:22px;letter-spacing:-0.015em;margin-bottom:0;">Experience the assessment</h3>
         <p style="font-size:15px;">The clearest way to judge Turnstone is to sit it yourself. We can set up a demonstration login for the practice room and a situation, and walk you through example reports.</p>
-        <a href="mailto:adam@generativeaisolutions.com?subject=Turnstone%20for%20defence%3A%20demo%20access" class="btn-primary" style="align-self:flex-start;">Ask for a demo</a>
+        <a href="mailto:adam@generativeaisolutions.com?subject=Turnstone%3A%20demo%20access" class="btn-primary" style="align-self:flex-start;">Ask for a demo</a>
         <p style="font-size:14px;color:var(--tx3);">Or email <span class="email" style="color:var(--tx1);font-weight:500;">adam@generativeaisolutions.com</span></p>
       </div>
       <div class="card" style="padding:32px;display:flex;flex-direction:column;gap:14px;border-top-color:var(--border);">
