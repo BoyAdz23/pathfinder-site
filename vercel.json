@@ -33,7 +33,12 @@
       "permanent": false
     },
     {
-      "source": "/search-firms/:path*",
+      "source": "/search-firms/",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/search-firms/:path+",
       "destination": "/",
       "permanent": false
     }
