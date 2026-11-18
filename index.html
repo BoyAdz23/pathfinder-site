@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var t='dark';try{t=localStorage.getItem('pf-theme')||'dark';}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
 <style>
 
   /* Turnstone (rewritten 2 October 2026, decision 50; broadened beyond defence 18 November 2026, decision 100). The precision look of the August site, with
@@ -681,8 +682,8 @@
 
 <script>
 (function() {
-  var theme = 'light';
-  try { theme = localStorage.getItem('pf-theme') || 'light'; } catch(e) {}
+  var theme = 'dark';
+  try { theme = localStorage.getItem('pf-theme') || 'dark'; } catch(e) {}
   document.documentElement.setAttribute('data-theme', theme);
   var btn = document.getElementById('themeToggle');
   function updateLabel() { btn.textContent = theme === 'dark' ? 'Light' : 'Dark'; }
